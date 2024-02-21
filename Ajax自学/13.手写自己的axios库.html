@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 之前发现经常axios库发神经，本来正常的文件都执行不了，说axios is not defind，可能是axios库的在线地址有问题，烦死了 -->
+    <!-- 那就自己写一个 -->
+    <p class="myP"></p>
+
+    <script>
+        //步骤：1、创建自定义的axios库函数    2、调用，并传入含axios库应有的内容的【对象】参数
+        //【1】、声明自定义的axios库函数
+        //function MyAxios(对象形参){
+        //    return new Promise()
+        //}
+        // 这里的Promise要做的事：
+        // new Promise(( resolve , reject ) => {
+        //     //创建XMLHttpRequest()对象来发送请求
+        //     const xhr = new XMLHttpRequest()
+        //     //这里直接用对象的属性来open(), “对象形参.method”如果没有设置就是undefined，那么就自动选'请求方式'，然后url也用下面调用时传的对象参数的属性就行
+        //     xhr.open(对象形参.method || '请求方式' , 对象形参.url)
+        //     xhr.addEventListener('loadend',function(){
+        //         //通过状态码来判断是成功还剩失败，状态码一般200多的就是成功，所以只要>=200 && < 300就行
+        //         if(xhr.status >= 200 && xhr.status < 300){
+        //             resolve(JSON.parse(xhr.response))
+        //         }else{
+        //             reject(new Error(xhr.response))
+        //         }
+        //     })
+        //     xhr.send()
+        // })
+
+        //【2】、调用，并传入含axios库应有的内容的【对象】参数
+        // MyAxios(对象实参)
+        //这里对象实参 ————>  {
+        //                      url: '......',            
+        //                   }.then(res => {
+        //                      ......
+        //                   }).catch(err => {
+        //                      ......
+        //                   })
+       
+        function MyAxios(config){
+           return new Promise(( resolve , reject ) => {
+                //创建XMLHttpRequest()对象来发送请求
+                const xhr = new XMLHttpRequest()
+                //这里直接用对象的属性来open(), “对象形参.method”如果没有设置就是undefined，那么就自动选'请求方式'，然后url也用下面调用时传的对象参数的属性就行
+                xhr.open(config.method || 'get' , config.url)
+                xhr.addEventListener('loadend',function(){
+                    //通过状态码来判断是成功还剩失败，状态码一般200多的就是成功，所以只要>=200 && < 300就行
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        resolve(JSON.parse(xhr.response))
+                    }else{
+                        reject(new Error(xhr.response))
+                    }
+                })
+                xhr.send()
+            })
+        }
+
+        MyAxios({
+            url: 'https://hmajax.itheima.net/api/province',            
+        }).then(res => {
+            console.log(res)
+            document.querySelector('.myP').innerHTML = res.list.join('<br>')
+        }).catch(err => {
+            document.querySelector('.myP').innerHTML = err.message
+        })
+        //这里又犯了一个错误！！！记住了！！axios库和.then()还有.catch()不要包起来！！
+        //axios( {}.then({}).catch({}) )是错的！！！
+        //axios({}).then({}).catch({})才是对的！！！
+    </script>
+</body>
+</html>

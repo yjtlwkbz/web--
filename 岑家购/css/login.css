@@ -1,0 +1,153 @@
+#bg-img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    z-index: -1;/*废话没有用*/
+  }
+  
+  
+/* 壁纸 */
+  
+.login-box {
+  border-radius: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 使得元素的中心点刚好重合于其父元素的中心点。 -50%表示沿着横轴和纵轴分别向左上方移动元素自身宽度和高度的一半。 */
+  width: 800px;
+  height: 500px;
+  background-color: rgba(255, 255, 255, 0.5);/*设置一个半透明的白色背景颜色（alpha 值为 0.5 表示透明度为50%）*/
+  /* 区分和background: transparent的区别，设置rgba值背景可以形成毛玻璃透明效果，而background: transparent是完完全全透明*/
+  padding: 60px 20px 20px 20px;
+  text-align: center;
+  box-sizing: border-box;
+  /* 
+     默认情况下，当我们设置元素的宽度和高度时，我们实际上是设置了内容区域的大小，而其余部分则能自动而灵活地调整大小以适应已设置的值。
+     但当我们将两个元素放入容器中，想要保证它们的总宽度始终相等。这时候，box-sizing: border-box; 就非常有用了。
+     当我们设置 box-sizing: border-box; 时，浏览器会按照以下方式进行计算元素的宽度和高度：
+     宽度 = 内容宽度 (width) + 填充 (padding) + 边框 (border)
+     高度 = 内容高度 (height) + 填充 (padding) + 边框 (border)
+     这就意味着，无论我们对元素的填充和边框怎么设置，元素的总宽度和高度都将保持不变。这样一来，我们就可以更方便地设置元素的宽度和高度了。 
+  */
+}
+
+h1 {
+  margin: 0;
+  padding-bottom: 30px;
+}
+
+form {
+  display: inline-block;
+  width: 100%;
+}
+
+.user-box {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.user-box input[type="text"], .user-box input[type="password"]{
+  width: 100%;
+  padding: 10px 0;
+  font-size: 18px;
+  color: #333;
+  border: none;
+  border-bottom: 1px solid gray;
+  /* 输入框仅是一条底边边框更好看，简洁 */
+   outline: none;
+   /*让轮廓线没有，元素无论是默认的轮廓线还是自定义的都不会有任何轮廓线（输入框给他设置border只是没点他时没边框，点了他输入时还会有边框 */
+  background: transparent;
+  /* 输入框也透明 */
+  /* background-color: rgba(255, 255, 255, 0.5);这是毛玻璃透明效果，不是完全透明，transparent才是完全透明 */
+  /* background-color: rgba(255, 255, 255, 0.0); 不过这样效果其实也一样，把a值设为0也是完全透明 */
+}
+
+.user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 20px;
+  color: #333;
+  pointer-events: none;
+  transition: .5s;
+}
+
+/* ==================================这一块就是让点击输入框要输入东西时，【账号、密码】两个提示语“上移”并且“变小”的效果==================================== */
+.user-box input[type="text"]:focus ~ label, /* ":focus" 元素在被选中(focus)时*/
+.user-box input[type="password"]:focus ~ label,/* ":valid" 元素在验证通过(valid)时*/
+.user-box input[type="text"]:valid ~ label,/* ~ label 选中紧随其后的 <label> 元素（不是跟input[type="text"]一块选中，而是就单单选中了<label> 这个元素） */
+.user-box input[type="password"]:valid ~ label { /*当用户输入符合预期格式时，表单元素会进入到有效(valid)状态*/
+  /* 第一：上移 */
+  top: -20px;
+  /* left: 0;没卵用 */
+  /* 第二：变色 */
+  color: #5eae91;
+  /* 第三：字体变小 */
+  font-size: 14px;
+}
+/* =================================================================================================================================================== */
+
+
+/* :valid来选取当前已验证通过的元素，以及:invalid来选取当前未通过验证的元素 */
+/* 例如，在该代码块中，
+    html
+    <input type="text" required>
+    css
+    input[type="text"]:valid {
+      border: 2px solid green;
+    }
+    当用户填写了文本框并且符合了 HTML5 中 "required" 属性指定的要求时，边框将变为绿色，表示该输入字段已通过验证。
+    相反，如果输入不符合要求，则会显示错误消息
+*/
+
+
+input[type="submit"] {
+  border: none;
+  outline: none;
+  width: 500px;
+  height: 40px;
+  background-color: rgb(6, 145, 145);
+  color: #fff;
+  font-size: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 30px;
+}
+
+input[type="submit"]:hover {
+  background: #4d9c81;
+}
+  
+.register-box {
+  position: absolute;
+  top: 395px;
+  left: 18.5%;
+  width: 500px;
+  height: 40px;
+  background: rgb(6, 145, 145);
+  border-radius: 20px;
+  padding-top: 5px;
+  cursor: pointer;
+  /* 指定鼠标指针在元素上悬浮时的形状，将鼠标指针的形状设置为手形（即小手）
+  cursor: pointer; ：鼠标指针变成一个手形，表示该元素是一个链接或可以被点击的按钮。
+  cursor: text; ：鼠标指针变成一根竖线，表示该元素是一个文本输入框，可以插入光标并输入文本。
+  cursor: default; ：鼠标指针变回默认状态，类似于箭头，表示不同于上述情况
+ */
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
+}
+
+.register-box a {
+  font-size: 20px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.register-box:hover {
+  background-color: yellowgreen;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入bootstrap.css -->
+    <link rel="stylesheet" href="Bootstrap3/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+
+    <!-- 公共 -->
+    <style>
+        html,body {
+            background-color: #EDF0F5;/* 下面设置了表单颜色灰，这里让浏览器页面是纯白的 */
+            width: 100%;
+            height: 100%;  /* 当整个HTML、body页面容器100%了才能成为整个页面 */
+            display: flex;  /* 将整个页面作为大盒子，开启flax弹性布局 */
+            justify-content: center;   /* justify-content水平布局居中，这里默认主轴是水平方向 */
+            align-items: center;       /* align-items垂直布局居中，这里默认主轴是水平方向 */
+        }/* 现在页面内所有内容基本就已经居中了，接下来只需要给它门设置自己的大小就能显示清楚了 */
+        .container {
+            width: 520px;
+            height: 540px;
+            background-color: #fff;
+            /* 现在设置了大小和背景，表单这个盒子就明显地显示出来了 */
+            padding: 60px;  /* 设置了padding会让里面内容居中一点更好看 */
+            box-sizing: border-box;  
+            /* box-sizing是自动计算盒子大小，默认值是content-box，也就是当你设置了宽高后，如果还有padding或border，实际宽高会加上他们改变 */
+            /* 而设置了box-sizing: border-box;就是自动计算，当内填充和边框变大，实际宽高不会变，只会压缩里面的内容区面积 */
+        }
+        .container h3 {
+            font-weight: 900;
+        }
+    
+
+        /*  表单容器和内容  */
+        .form_wrap {
+            color: #8B929D !important;
+        }
+        .form-text {
+            color: #8B929D !important;
+        }
+        button{
+            margin-top: 20px;
+        }
+    
+
+        /*  提示框样式  */
+        .alert {
+            transition: .5s;  /* .代表0.几秒 */
+            opacity: 0;  /* opacity: 0,表示完全透明 */
+        }
+        .alert.show {
+            opacity: 1;  /* opacity: 1,表示完全不透明 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>欢迎-登录</h3>
+        <!-- 登录结果-提示框 -->
+        <div class="alert alert-success" role="alert">
+          JS中会动态插入提示文字
+        </div>
+        <!-- 表单 -->
+        <div class="form_wrap">
+          <form>
+            <div class="mb-3">
+              <label for="username" class="form-label">账号名</label>
+              <input type="text" class="form-control username" name="username" aria-describedby="usernameHelp">
+              <!-- 注意！！！ -->
+              <!-- 这里我在上面这个input里设置了这个name="username" -->
+              <!-- 浏览器具有一种机制，能够记住用户之前输入过的表单信息，并在用户再次遇到类似表单时提供自动填充的建议。
+                   当你在 <input> 标签内设置 name="..." 属性时，浏览器解释这个字段，并尝试基于之前保存的数据为此输入框提供自动填充选项。
+                   浏览器通常会根据表单域的 name 和 id 属性的内容来猜测输入框的用途。
+                   比如，name="username"、name="email"、name="phone" 等常见的名称会让浏览器推断出相应的自动填充类型。 
+                   如果您删除或更改了 name 属性的值，浏览器可能就无法识别该字段与之前保存的字段相匹配，因此不再提供之前输入的信息进行自动填充。
+               -->
+               <!-- 如果您不希望浏览器为特定的表单元素提供自动填充服务，可以通过设置 autocomplete 属性来关闭自动填充功能：
+                    <input type="text" class="form-control username" name="username" autocomplete="off">
+               -->
+
+               <!-- aria-describedby 是一个用于无障碍访问的 HTML 属性，它属于 WAI-ARIA规范中的一部分。
+                    aria-describedby 属性用于建立起当前元素与另一元素之间的关联性
+                    aria-describedby="usernameHelp" 意味着这个 <input> 元素被指向了一个 ID 为 usernameHelp 的其他元素，该元素包含了关于 <input> 更多的描述信息。
+                    如果您想要 aria-describedby 起作用，您需要添加一个具有 id="usernameHelp" 的元素，里面包含了对 username 输入字段的描述。例如：
+                    <div class="mb-3">
+                        <label for="username" class="form-label">账号名</label>
+                        <input type="text" class="form-control username" name="username" aria-describedby="usernameHelp">
+                        <div id="usernameHelp" class="form-text">请输入您的账号名称。</div>
+                    </div>
+                -->
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">密码</label>
+              <input type="password" class="form-control password" name="password">
+            </div>
+            <button type="button" class="btn btn-primary btn-login"> 登 录 </button>
+          </form>
+        </div>
+      </div>
+</body>
+</html>

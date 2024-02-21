@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入bootstrap.css -->
+    <link rel="stylesheet" href="../HTML+css部分/css/Bootstrap3/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 表单 -->
+        <div class="form_wrap">
+          <form>
+            <div class="mb-3">
+              <label for="username" class="form-label">账号名</label>
+              <input type="text" class="form-control username" name="username" aria-describedby="usernameHelp">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">密码</label>
+              <input type="password" class="form-control password" name="password">
+            </div>
+            <button type="button" class="btn btn-primary btn-login"> 登 录 </button>
+          </form>
+        </div>
+      </div>
+
+    <!-- 引入axios库 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- 1、要用form-serialize必须先引入特有的JS文件，我已放在Ajax当前文件夹 -->
+    <script src="./form-serialize.js"></script>
+    <script>
+        // 2、获取from表单元素先
+        const form = document.querySelector('form')
+        const Button = document.querySelector('button')
+
+        Button.addEventListener('click',function(){
+            //一点击就获取到输入框的信息
+
+            // 3、调用serialize()插件获取表单信息
+            // 有两个参数需要传： 表单对象 、配置对象
+            // 表单对象：注意一点，尽量让该表单里input输入框的name和接口文档里需要的参数名字一模一样，因为后台认数据并封装进data对象里时，就是认【name】
+            // 配置对象：hash：传输的数据结构
+            //                当是true时，传输JS数据【对象】，推荐，因为axios底层原理就是把像data、params这些对象自动转化成json文件的字符串提交服务器
+            //                当是false时，传输的就是【查询字符串】："username=yjtlwkbz&password=7654321"类似这样的，就是URL的？后面那个玩意，但是axios库需要的是对象
+            //          empty：是否获取空值，true就是，false就不是，有脑子就能理解
+            const data = serialize(form, { hash: true, empty: true })
+            console.log(data)   //结果输出{ username : 我输入的字符串 , password : 我输入的字符串 }
+            //那怎么获取到这个对象里的信息给axios库呢？
+            //利用【解构】对象：
+            const { username , password } = data //这样就反向把对象的值给到{}里的两个成员了
+
+            //调用axios库
+            axios({
+                url: 'https://hmajax.itheima.net/api/login', 
+                method: 'post',
+                data: {
+                    username : username,
+                    password : password
+                }
+            }).then(result => {
+                //成功的情况
+                console.log(result.data)
+            }).catch(error => {
+                //不成功的情况
+                console.log(error)
+            })
+        })
+    </script>
+</body>
+</html>

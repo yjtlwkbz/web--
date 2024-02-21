@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //回调函数就是把一个函数A作为参数传给另一个函数B，在B函数里调用函数A
+        //例子1：
+        //首先创建一个函数B，它负责接收两个数字，然后在自己内部调用函数A、并把两个数传给A
+        function B(num1,num2,A){
+            return A(num1,num2)
+        }
+        //然后函数A被B调用后才开始做“加减乘除”运算，A就是一个回调函数，它自己只负责运算，它的使用由另一个函数调用
+        //同时这里B作为alert()函数也是一个回调函数，它作为参数传给alert()，被它调用输出
+        alert(B(1,2,function(a,b){
+            return a+b
+        }))
+        alert(B(1,2,function(a,b){
+            return a*b
+        }))
+        
+
+        //没有回调函数时
+        // function first(){
+        //     setTimeout(function(){
+        //         document.write('first'+`<br>`)
+        //     },1000)
+        // }
+        // function second(){
+        //     document.write('second'+`<br>`)
+        // }
+        // //本来我这样把first放在前面是为了让first先执行，再执行second，结果现在因为设置了setTimeOut，限制了first在1秒之后才执行
+        // first();
+        // second();//先执行了second()的内容，再执行first()的内容
+
+        //改良后
+        function first(c){
+            setTimeout(function(){
+                document.write('first'+`<br>`)
+                c()//改将second函数传给first函数，在first函数里调用second就可以实现先输出first再到second了
+            },1000)
+        }
+        function second(){//现在我不在外面单独调用second方法了
+            document.write('second'+`<br>`)
+        }
+        first(second);//只需要执行first就能连带second一起执行
+    </script>
+</body>
+</html>

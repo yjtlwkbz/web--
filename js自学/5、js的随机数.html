@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let a = [1,2,3,4,5]
+        
+        for(let i=0; i<a.length; i++){
+            //Math.random()返回[0~2)的“小数”（1.23、1.09707也有）
+            //Math.floor和parseInt都是取整，不留小数
+            let r1 = Math.floor(Math.random() * a.length)
+            let r2 = parseInt(Math.random() * a.length)
+            let tmp = a[i]
+            a[i] = a[r]
+            a[r] = tmp
+        }
+           
+        console.log(a)
+    </script>
+</body>
+</html>

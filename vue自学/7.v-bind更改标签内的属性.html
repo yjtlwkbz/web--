@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+    <style>
+        .active{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h2 @click="disappear">点一下就不见</h2>
+        <img src="../岑家购/img/岑家购LOGO.png" v-bind:class="{active:isActive}">
+        <!-- 第一，'v-bind:属性'修改属性指令可以省略'v-bind' -->
+        <!-- <img :class="{active:isActive}"> 是可以的-->
+
+        <!-- 第二 -->
+        <!-- 这里:class="{active:isActive}"做法是用对象判断法判断isActive是true还是false -->
+        <!-- 还可以用三元表达式 -->
+        <!-- :class=" isActive?'active':'' " -->
+        <br><br><br>
+        <h2 @click="change">点一下就更换</h2> 
+        <img v-bind:src="imgSrc">
+    </div>
+    <script>
+        let index = 0
+        new Vue({
+            el: '#app',
+            // methods: {
+            //     changeState: function(){
+            //         this.index += 1
+            //         if(this.index > 2){
+            //             this.index = 0
+            //         }
+            //     }
+            // },
+            data: {
+                Mysrc: ['../岑家购/img/12315平台.avif','../岑家购/img/扫黄打非.avif','../岑家购/img/文化局.avif','../岑家购/img/岑家购LOGO.png'],
+                imgSrc: "../岑家购/img/岑家购LOGO.png",
+                isActive: false
+            },
+            methods: {
+                change: function(){
+                    this.imgSrc = this.Mysrc[index]
+                    if( index === 3 ){
+                        index = 0
+                    }else{
+                        index++
+                    }
+                },
+                disappear: function(){
+                    this.isActive = !this.isActive
+                }
+            }
+        })
+    </script>
+</body>
+</html>

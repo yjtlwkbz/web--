@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <!-- 导入vue类包 -->
+        <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(i,index) in arr">
+                {{ index+1 }}、遍历数组里的：{{ i }}
+            </li>
+        </ul>
+
+        <button @click="add">增加数据</button>
+        <button @click="reduse">减少数据</button>
+        <h2 v-for="j in animal" v-bind:title="j.name">
+            名字：{{ j.name }}   年龄：{{ j.age }}  类型：{{ j.type }}
+        </h2>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                arr: ['第一个','第二个','第三个','第四个','第五个','第六个'],
+                animal: [
+                    {name:'狗子',age:'18',type:'犬类'},
+                    {name:'猫子',age:'20',type:'猫类'},
+                    {name:'豹子',age:'3',type:'猫类'}
+                ]
+            },
+            methods: {
+                add: function(){
+                    this.animal.push({name:'默认',age:'？',type:'未知类'})
+                },
+                reduse: function(){
+                    this.animal.shift()
+                }
+            }
+        })
+    </script>
+</body>
+</html>

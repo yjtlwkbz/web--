@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="myP"></p>
+
+    <script>
+        let city = prompt('输入省份')
+
+        function MyAxios(config){
+           return new Promise(( resolve , reject ) => {
+                const xhr = new XMLHttpRequest()
+                xhr.open(config.method || 'get' , config.url)
+                xhr.addEventListener('loadend',()=>{
+                    //通过状态码来判断是成功还剩失败，状态码一般200多的就是成功，所以只要>=200 && < 300就行
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        resolve(JSON.parse(xhr.response))
+                    }else{
+                        reject(new Error(xhr.response))
+                    }
+                })
+                xhr.send()
+            }
+        )}
+
+        const urlParamas = new URLSearchParams({
+                pname: city
+        })
+        MyAxios({
+            url: `https://hmajax.itheima.net/api/city?${urlParamas.toString()}`,            
+        }).then(res => {
+            console.log(res)
+            document.querySelector('.myP').innerHTML = res.list.join('<br>')
+        }).catch(err => {
+            document.querySelector('.myP').innerHTML = err.message
+        })
+    </script>
+</body>
+</html>

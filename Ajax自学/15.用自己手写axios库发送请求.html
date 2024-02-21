@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>点击一下就注册成功</button>
+
+    <script>
+        let button = document.querySelector('button')
+
+        button.addEventListener('click',function(){
+
+            function MyAxios(config){
+                return new Promise(( resolve , reject ) => {
+                    const xhr = new XMLHttpRequest()
+                    xhr.open(config.method || 'get' , config.url)
+                    xhr.addEventListener('loadend',()=>{
+                        //通过状态码来判断是成功还剩失败，状态码一般200多的就是成功，所以只要>=200 && < 300就行
+                        if(xhr.status >= 200 && xhr.status < 300){
+                            resolve(JSON.parse(xhr.response))
+                        }else{
+                            reject(new Error(xhr.response))
+                        }
+                    })
+                    //开始请求
+                    //1、先设置请求头
+                    //请求头就是约定了和服务器之间交换数据的类型
+                    //'Content-Type'这玩意是固定的，'application/json'要去请求报文哪里看你要连接的服务器的请求约定是要按什么类型传输数据，一般都是'application/json'
+                    xhr.setRequestHeader('Content-Type','application/json')
+
+                    //2、设置【提交参数】
+                    //记住，这里一定要去看接口文档或者请求报文，去查看要传的参数的名字是什么，按照人家的参数名来写
+                    const user = { 
+                        username: '2774282827',
+                        password: '8888888' 
+                    }
+                    //然后把含参数的对象转成JSON形式传，当然也可以一开始就写成JSON格式，看个人喜好
+                    xhr.send(JSON.stringify(user))
+                }
+            )}
+
+            MyAxios({
+                url: 'https://hmajax.itheima.net/api/register',
+                //注意！！！注意！！！这里是发送请求，就要加上method了！！
+                method: 'post'
+            }).then(res => {
+                console.log(res)
+                alert(res.message)
+            }).catch(err => {
+                document.write(err.message)
+            })
+        })
+    </script>
+</body>
+</html>

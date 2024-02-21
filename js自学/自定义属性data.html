@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 以data开头的，比如data-id。。。 -->
+    <div data-id="1" data-suibian="第一个">1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+
+    <script>
+        const a = document.querySelector('div')
+        // dataset是获取这个元素的自定义属性并以一个集合形式返回，比如我刚刚设置的data-id和data-suibian里，id和suibian就是
+        console.log(a.dataset)
+        // dataset.自定义名就可以获得我们起的自定属性名的值
+        console.log(a.dataset.id)
+        console.log(a.dataset.suibian)
+    </script>
+</body>
+</html>

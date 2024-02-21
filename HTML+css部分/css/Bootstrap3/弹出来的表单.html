@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!--    您可以切换模态框（Modal）插件的隐藏内容：
+            1、通过 data 属性：在控制器元素（比如按钮或者链接）上设置属性 data-toggle="modal"，
+               同时设置 data-target="#identifier" 或 href="#identifier" 来指定要切换的特定的模态框（带有 id="identifier"）。
+
+            2、通过 JavaScript：使用这种技术，您可以通过简单的一行 JavaScript 来调用带有 id="identifier" 的模态框：
+               $('#identifier').modal(options) 
+               1、Options: .modal(options)	把内容作为模态框激活。接受一个可选的选项对象。$('#identifier').modal({keyboard: false})
+               2、Toggle: .modal('toggle')	手动切换模态框。$('#identifier').modal('toggle')
+               3、Show: .modal('show')	手动打开模态框。$('#identifier').modal('show')
+               4、Hide: .modal('hide')	手动隐藏模态框。$('#identifier').modal('hide')
+    -->
+<!-- 1、第一种 -->
+<!-- 按钮触发模态框 -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">开始演示模态框</button>
+<button class="btn btn-primary btn-lg" id="btn">js手动按钮</button>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container row" style="width: 800px; height: 600px; text-align: center; margin: auto; font-size: 18px; border: 3px solid rgba(0, 0, 0, 0.139); border-radius: 50px;">
+                    <h1>登陆界面</h1><br>
+                    <div class=" col-md-8 col-md-push-2" style="height: 500px;">
+                        <form action="#" class="form-horinzontal" rolr="form">
+                            <div class="form-group row">
+                                <label for="Account" class="control-label col-md-2 col-md-push-2">账号:</label>
+                                <div class="col-md-6  col-md-push-2">
+                                    <input type="text" class="form-control" id="Account">
+                                </div>          
+                            </div>
+                            <div class="form-group row">
+                                <label for="psw" class="control-label col-md-2 col-md-push-2">密码:</label>
+                                <div class="col-md-6  col-md-push-2">
+                                    <input type="password" class="form-control" id="psw">
+                                </div>  
+                            </div>
+                            <div class="form-group row">
+                                <label for="Phone" class="control-label col-md-2 col-md-push-2">手机:</label>
+                                <div class="col-md-6  col-md-push-2">
+                                    <input type="text" class="form-control" id="Phone">
+                                </div>
+                                <button class="btn col-md-2 col-md-push-2">验证码</button>
+                            </div>
+                            <div class="form-group row">
+                                <label class="control-label col-md-2 col-md-push-2">身份</label>
+                                <div class="col-md-6  col-md-push-2">
+                                    <label for="stu" class="radio-inline" style="font-size: 13px;">
+                                        <input type="radio" id="stu" name="shenfen">学生
+                                    </label>
+                                    <label for="tea" class="radio-inline" style="font-size: 13px;">
+                                        <input type="radio" id="tea" name="shenfen">教职工
+                                    </label>
+                                    <label for="man" class="radio-inline" style="font-size: 13px;">
+                                        <input type="radio" id="man" name="shenfen">管理员
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="psw" class="control-label col-md-2 col-md-push-2">文本:</label>
+                                <div class="col-md-6  col-md-push-2">
+                                    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                                </div>  
+                            </div>
+            
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+
+    <script type="text/javascript">// 绑定按钮的点击事件
+        $("#btn").click(function(){
+            //手动打开模态框
+            $("#myModal").modal( "show" );
+        })
+        // // 关闭模态框
+        // $("#submit_btn").click(function(){
+        // })
+    </script>
+</div>
+</body>
+</html>

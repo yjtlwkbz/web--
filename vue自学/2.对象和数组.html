@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <div v-on:click="change"> {{ hahaha }} </div>
+        <h2>
+            {{ animal.name }}
+            {{ animal.phone }}
+        </h2>
+        <ul>
+            <li> {{ state[0] }} </li>
+            <li> {{ state[1] }} </li>
+            <li> {{ state[2] }} </li>
+            <li> {{ state[3] }} </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            data: { 
+                //普通成员变量
+                message: 'hello 岑梓铭',
+                hahaha: '哈哈哈',
+                //对象成员
+                animal:{
+                    name: '癫狗',
+                    phone: '18927366541'
+                },
+                //数组成员
+                state:['广东','上海','山东','新疆']
+            },
+
+            methods: {
+                change: function(){
+                    this.hahaha = 'stupid'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

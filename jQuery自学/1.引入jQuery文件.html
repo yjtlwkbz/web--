@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+    <style>
+        div{
+            width: 300px;
+            height: 400px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        //$()是什么？
+        //$()等同于jQuery()，是jQuery的别称，执行函数返回一个包含所有匹配的 DOM 元素数组的 jQuery 对象
+        $('div').hide()
+        // 那如果我们想获取第2个div的值（div2）那该怎么样操作呢？
+        // 方法
+        // $('div').eq(1).text()
+
+        // $.是什么
+        // 因为$代表的是jQuery对象，所以$.代表jQuery对象的方法，比如$.post()，$.get()，$.ajax()
+    </script>
+</body>
+</html>

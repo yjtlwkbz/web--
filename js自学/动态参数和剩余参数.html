@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //动态参数
+        //比如有个要求，用户使用getSum()函数，任意传任何数进去都可以相加求和，2个也可以，100也和有
+        //那好，靠，函数里直接不写形参了，反正也不知道到底传几个进来
+        function getSum(){
+            //arguments就是自动获取到这个函数传进来几个参数，并且封装进一个【伪数组】里，只存在函数里
+            console.log(arguments)
+            let sum = 0
+            for(let i=0; i<arguments.length; i++){
+                sum += arguments[i]
+            }
+            return sum
+        }
+        let sum1 = getSum(1,2,3)
+        let sum2 = getSum(1,2,3,4,5,6)
+        let sum3 = getSum(1,2,3,7,8,9,4,23,566)
+        document.write(sum1+`<br>`)
+        document.write(sum2+`<br>`)
+        document.write(sum3+`<br>`)
+
+
+
+        //剩余参数（一样的效果甚至更灵活，推荐使用）
+        function getSum2(...shit){
+            //注意！！！“...”不要写进去
+            console.log(shit)
+            let sum = 0
+            for(let i=0; i<shit.length; i++){
+                sum += shit[i]
+            }
+            return sum
+        }
+        let newSum1 = getSum2(1,2,3)
+        let newSum2 = getSum2(1,2,3,4,5,6)
+        let newSum3 = getSum2(1,2,3,7,8,9,4,23,566)
+        document.write(`<br>`+newSum1+`<br>`)
+        document.write(newSum2+`<br>`)
+        document.write(newSum3+`<br>`)
+
+        //那既然叫“剩余参数”，他到底有什么比动态参数好的呢？
+        //1、它是真数组！可以.push() .pull()
+        //2、它允许设形参也可以不设，灵活
+        //例子：
+        function getString(UserName,password,...shit){
+            //此时shit数组里装的就是传进来的参数里除了前两个之后的内容
+            console.log(shit)
+            console.log(UserName)
+            console.log(password)
+            let string = UserName + ' ' + password
+            for(let i=0; i<shit.length; i++){
+                string += shit[i]
+            }
+            return string
+        }
+        let string1 = getString('czm','12345')
+        let string2 = getString('chy','3456789',' ',"that's shit")
+        let string3 = getString('damn','34560',' what',' the',' fuck',' ?')
+        document.write(`<br>`+string1+`<br>`)
+        document.write(string2+`<br>`)
+        document.write(string3+`<br>`)
+
+
+        //补充：展开运算符
+        //刚刚那个“...剩余参数名”里的“...”就是
+        //运用于数组会更简单，例子：
+        let arr1 = [1,2,3]
+        console.log(Math.max(1,2,3))
+        console.log(Math.max(...arr1))
+        
+        let arr2 = [4,5,6]
+        // let arr = [1,2,3,4,5,6]
+        let arr = [...arr1,...arr2]
+
+        //剩余参数用于函数，展开运算符运用于数组展开
+    </script>
+</body>
+</html>

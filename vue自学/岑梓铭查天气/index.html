@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>岑梓铭查天气</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+    <style>
+    body,ul,h1,h2,h3,h4,h5,h6{
+        margin: 0;
+        padding: 0;
+    }
+    h1,h2,h3,h4,h5,h6{
+        font-size:100%;
+        font-weight:normal;
+    }
+    a{
+        text-decoration:none;
+    }
+    ul{
+        list-style:none;
+    }
+    img{
+        border:0px;
+    }
+
+    /* 清除浮动，解决margin-top塌陷 */
+    .clearfix:before,.clearfix:after{
+        content:'';
+        display:table;    
+    }
+    .clearfix:after{
+        clear:both;
+    }
+    .clearfix{
+        zoom:1;
+    }
+
+    .fl{
+        float:left;
+    }
+    .fr{
+        float:right;
+    }
+    body{
+        font-family:'Microsoft YaHei';   
+    }
+    .wrap{
+        position: fixed;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        background:#fff;
+
+    }
+    .search_form{
+        width:640px;
+        margin:100px auto 0;
+    }
+    .logo img{
+        display:block;
+        margin:0 auto;
+    }
+    .form_group{
+        width:640px;
+        height:40px;
+        margin-top:15px;
+    }
+    .input_txt{
+        width:538px;
+        height:38px;
+        padding:0px;
+        float:left;
+        border:1px solid #41a1cb;
+        outline:none;
+        text-indent:10px;
+    }
+
+    .input_sub{
+        width:100px;
+        height:40px;
+        border:0px;
+        float: left;
+        background-color: #41a1cb;
+        color:#fff;
+        font-size:16px;
+        outline:none;
+        cursor: pointer;
+        position: relative;
+    }
+    .input_sub.loading::before{
+        content:'';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: url('./img/loading.gif');
+    }
+
+    .hotkey{
+        margin:3px 0 0 2px;
+    }
+
+    .hotkey a{
+        font-size:14px;
+        color:#666;
+        padding-right:15px;
+    }
+    .weather_list{
+        height:200px;
+        text-align:center;
+        margin-top:50px;
+        font-size:0px;
+    }
+    .weather_list li{
+        display:inline-block;
+        width:200px;
+        height:200px;
+        padding:0 10px;
+        overflow: hidden;
+        position: relative;
+        background:url('./img/line.png') right center no-repeat;
+        background-size: 1px 130px;
+    }
+
+    .weather_list li:last-child{
+        background:none;
+    }
+
+    .info_date{
+        width:100%;
+        height:40px;
+        line-height:40px;
+        color:#999;
+        font-size:14px;
+        left:0px;    
+        bottom:0px;    
+        margin-top: 15px;
+    }
+    .info_date b{
+        float: left;
+        margin-left:15px;
+    }
+
+    .info_type span{
+        color:#fda252;
+        font-size:30px;
+        line-height:80px;
+    }
+    .info_temp{
+        font-size:14px;  
+        color:#fda252;
+    }
+    .info_temp b{
+        font-size:13px;
+    }
+    .tem .iconfont {
+        font-size: 50px;
+    }
+    a:hover{
+        cursor: pointer;
+        color: #fda252;
+        font-size: 16px;
+    }
+    </style>
+</head>
+<body>
+    <div class="wrap" id="app">
+    <div class="search_form">
+      <div class="logo"><img src="./img/logo.jpg" alt="logo" /></div>
+      <div class="form_group">
+        <input type="text" @keyup.enter="searchWeather" v-model="city"  class="input_txt" placeholder="请输入查询的天气"/>
+        <!-- 第1步：加上v-on或者@指令，让文本框按下回车、或者点击查询会有所反应 -->
+        <!-- 第2部：加上v-model让文本框和vue的data信息双向流通，文本框输入什么，对应的“city”的值就改变 -->
+        <button class="input_sub" @click="searchWeather">
+          搜 索
+        </button>
+      </div>
+      <div class="hotkey">
+        <a @click="changeCity('北京')">北京</a>
+        <a @click="changeCity('上海')">上海</a>
+        <a @click="changeCity('广州')">广州</a>
+        <a @click="changeCity('深圳')">深圳</a>
+      </div>
+    </div>
+    <ul class="weather_list">
+      <li v-for="i in dataArray">
+            <div class="info_type">
+                <span class="iconfont">{{ i.wea }}</span>
+            </div>
+            <div class="info_temp">
+            <b></b>
+            {{ i.win }} ~ {{ i.win_speed }}
+            <b></b>
+            </div>
+            <div class="info_date">
+                <span>{{ i.date }}</span>
+            </div>
+      </li>
+    </ul>
+  </div>
+
+
+
+
+    <!-- 引入axios库 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                //文本框输入的查询的城市信息
+                city: "武汉",
+                //服务器获取的资源数据，放到这个数组，再用上面<ul><li>数据</li><li>数据</li></ul>用v-for指令绑定
+                dataArray: [],
+                // hotCitys: ["北京", "上海", "广州", "深圳"]
+            },
+            methods: {
+                searchWeather: function(){
+                    //测试一下点击或者回车有没有反应
+                    console.log('查询天气')
+                    //以及测试在文本框输入东西，city的值是否有跟着改变
+                    console.log(this.city)
+
+                    //第3步：引入axios库
+                    //第4步：这个天气接口网站有点问题，只能根据城市city参数来查询具体的城市天气信息，当然这也正是我们所需要的
+                    //      那么我们就让网址后面“+”上city参数，字符串相加也还是字符串，正好动态生成接口服务器地址,或者用`${}`的方式
+                    //      另外因为原来的API接口发癫，我自己注册了一个账户，可以免费查询500次
+
+                    //因为.then()回调函数会改变this的指向，要用变量保存
+                    let that = this
+
+                    axios.get(`http://v1.yiketianqi.com/free/week?unescape=1&appid=26619621&appsecret=RgikNh3a&city=${this.city}`)
+                    .then(
+                        function(response){
+                            //测试能否接通服务器，并根据我们输入的内容获取对应的信息
+                            console.log(response.data.data)//测试成功之后，我们下一步就应该把这些【数据】渲染到【DOM元素】也就是页面上
+                                                           //但是怎么渲染到页面上呢？那就要用v-for循环指令，把数据遍历渲染到<ul><li>数据</li><li>数据</li></ul>上
+                                                           //但是要用v-for,必然要绑定好是哪一个数组，那么就要在data创建一个数组，保存我们服务器获取到的数据
+                            that.dataArray = response.data.data
+                        },
+                        function(err){
+                            console.log(err)
+                        }
+                    )
+                },
+                changeCity: function(city){
+                    this.city = city
+                    this.searchWeather()
+                }
+            }
+        })
+    </script>    
+</body>
+</html>

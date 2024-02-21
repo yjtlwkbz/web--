@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+    <span>
+        {{ message }}
+    </span>
+    <div class="app">
+        {{ message }}
+    </div>
+
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+
+    <script>
+        //注意！！Vue是对象，类、对象首字母大写
+        //1、用回调函数
+        // new Vue({
+        //     el:'#app',
+        //     data (){
+        //         return{
+        //             message: 'hello 岑梓铭'
+        //         }
+        //     }
+        // })
+
+        //2、直接这样
+        new Vue({//定义一个vue类的对象（或称为变量）
+            el: '#app',     //绑定获取html中的操作对象、元素s,"element"的缩写
+            // el: '.app',
+            // el: 'div'
+            //class选择器、标签选择器也都可以
+
+            data: {   //定义数据属性变量与其值，简单说就是HTML里对应的{{}}里的变量的值
+                message: 'hello 岑梓铭',
+                hahaha: '哈哈哈'
+            },//别忘了“，”
+        })
+    </script>
+
+</body>
+</html>

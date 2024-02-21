@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //假设定义一个数组，希望在不改变它的值的情况下，用一个新数组获得它里面每个值*10的新结果数组
+        let a = [1,2,3,4,5]
+
+        //第一:
+        //语法格式：
+        // 原数组.map((每个值的参数,每个值的下标索引) => {
+        //     return 想要做什么
+        // })
+        // 这样每次遍历到一个数就执行一次map里这个函数体，然后再到下一个，直到结束
+        let newArray = a.map((value,index)=>{
+            return value * 10
+        })
+        document.write(newArray)
+        
+        //第二:
+        //更简洁的改变数组成员,不过这样是变成一个值
+        //语法格式:
+        // 原数组.map( 任意新的变量名 => 新的值 )
+        // 这个变量名就相当于代替了原数组的每一个成员,类似与for-each
+        let newArray2 = a.map(zifuchuan => '数组变字符串!')
+        alert(newArray2)
+        
+    </script>
+</body>
+</html>

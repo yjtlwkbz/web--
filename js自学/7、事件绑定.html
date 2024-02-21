@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+            box-sizing: border-box;
+        }
+        
+        ul{
+            list-style: none;
+        }
+        .mi{
+            position: relative;
+            width: 223px;
+            margin: 100px auto;
+        }
+        .mi input {
+            width: 223px;
+            height: 48px;
+            padding: 0 10px;
+            font-size: 14px;
+            line-height: 48px;
+            border: 1px solid #eBeBe0;
+            outline: none;
+        }
+        .mi.search{
+            border: 1px solid #ff6700;
+        }
+        .result-list{
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 48px;
+            width: 223px;
+            border: 1px solid #ff6700;
+            border-top: 0;
+            background: #fff
+        }
+        .result-list a{
+            display: block;
+            padding: 6px 15px;
+            font-size: 12px;
+            color:#424242;
+            text-decoration: none;
+        }
+        .result-list a:hover{
+           background-color: #eee; 
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 
+        浏览器事件：load:页面全部资源加载完毕   
+                   scroll:浏览器滚动的时候触发   
+                   resize:页面大小事件
+
+        鼠标事件：click：点击事件   
+                 dbclick：双击事件  
+                 contextmenu：右键点击事件   
+                 mousesown：鼠标左键按下事件  
+                 mouseup：鼠标左键抬起事件       mouseover与mouseenter区别
+                 mousemove：鼠标移动事件          1、onmouseover、onmouseout：经过其子元素时也触发该事件；（父亲有的东西，儿子也有）,会有冒泡效果
+                 mouseout：鼠标移出事件           2、onmouseenter、onmouseleave：经过其子元素时不触发该事件。（父亲的东西就是父亲的，不归儿子所有）,推荐
+                 mouseover：鼠标移入事件  
+                 mouseenter：鼠标移入事件   
+                 mouseleave：鼠标移出事件
+
+        键盘事件：keyup：键盘抬起事件
+                 keydown：键盘按下事件
+                 keypress：键盘按下再抬起事件
+
+        表单事件：change：表单内容改变事件
+                 input：表达内容输入事件
+                 submit：表单内容提交事件
+
+        触摸事件：touchstart：触摸开始事件
+                 touchend：触摸结果事件
+                 touchmove：触摸移动事件
+                 内容转变事件onchange
+
+        表单：
+        1、焦点事件：blur：失去焦点
+                    focus：获取焦点
+        2、文本事件：input：用户输入事件
+     -->
+
+    <!-- 几个不好理解的事件 -->
+    <!-- 1、输入框焦点事件案例 -->
+    <div class="mi">
+        <input type="search" placeholder="小米笔记本">
+        <ul class="result-list">
+            <li><a href="#">全部商品</a></li>
+            <li><a href="#">小米11</a></li>
+            <li><a href="#">小米10S</a></li>
+            <li><a href="#">小米笔记本</a></li>
+            <li><a href="#">小米手机</a></li>
+            <li><a href="#">黑鲨4</a></li>
+            <li><a href="#">空调</a></li>
+        </ul>
+    </div>
+    <script>
+        let search = document.querySelector('[type=search]') //注意！！！！[某属性=值]——>这叫属性选择器，在没有class、id这些选择器不知道怎么选时可以这样
+        let result_list = document.querySelector('.result-list')
+        search.onfocus = function(){
+            result_list.style.display = 'block'   //注意！！！1、别忘了属性是标签里的东西，display这些是【样式】！别忘了style！！！
+                                                  //         2、别忘了值是【字符串】！！！！
+        }
+        search.onblur = function(){
+            result_list.style.display = 'none'
+        }
+    </script>
+
+
+    <!-- 2、改变表单数据change事件 -->
+    <select class="sid">
+        <option value="">-请选择-</option>
+        <option value="1">北京</option>
+        <option value="2">河北</option>
+        <option value="3">天津</option>
+        <option value="4">河南</option>
+        <option value="5">山西</option>
+    </select>
+    <select class="cid"></select>
+
+    <script>
+        let data = new Array()
+        data[0] = ["海淀区","朝阳区","丰台区","昌平区"]
+        data[1] = ["石家庄","保定","邯郸","邢台"]
+        data[2] = ["河东区","河西区","河北区","南开区"]
+        data[3] = ["郑州","洛阳","开封","驻马店"]
+        data[4] = ["太原","大同","吕梁","运城"]
+
+        let sid = document.querySelector('.sid')
+        let cid = document.querySelector('.cid')
+        sid.onchange = function(){
+            //获取一下option里的value值，当不是“”时就代表不是“-请选择-”这一项
+            //另外，这样设置value的值为1、2、3...的好处还有可以当成二维数组的一维下标
+            let v = this.value
+
+            //最后一步，不要忘了每次“改变事件”之后要先把上一次加到cid下拉菜单的内容给清掉，不然他就会一直加一直加
+            //js还给下拉菜单提供了一个length属性，只需要把他的长度变为0就时清空了
+            cid.length = 0
+            if(v != ""){
+                //接下来遍历每一行的一维数组的成员，把他们一个一个加到新的下拉菜单
+                for(let i=0; i<data[v].length; i++){
+                    //js给下拉菜单提供了一个方法：add(),里面传一个option对象就可以往页面添加下拉菜单的选项
+                    cid.add(new Option(data[v][i]))
+                }
+            }
+        }
+    </script>
+</body>
+</html>

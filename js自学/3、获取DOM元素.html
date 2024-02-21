@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 这部分就叫DOM元素，HTML标签代码就可以理解为DOM元素 -->
+    <div id="box">
+        fjnv;fsknvl
+    </div>
+    <ul class="nav">
+        <li>测试1</li>
+        <li>测试2</li>
+        <li>测试3</li>
+        <li>测试4</li>
+        <li>测试5</li>
+    </ul>
+    <p class="P">kjvnsoidhfoklmclmsdcm,</p>
+
+    <!-- 这部分是js获取DOM元素 -->
+    <script>
+        //document.querySelector()只获取一个元素，返回值为【对象】
+        //括号里是（标签名、类名、id名...）一定要用引号弄成字符串
+        const box = document.querySelector('#box')
+        const first_li = document.querySelector('.nav li:first-child')
+
+        //document.querySelectorAll()获取所有相同名字元素为一个伪数组，返回值是对象数组
+        //括号里是（标签名、类名、id名...）一定要用引号弄成字符串
+        const All_li = document.querySelectorAll('.nav li')
+        const p = document.querySelectorAll('p')//哪怕只有一个元素，用了....All()返回的也是只有一个成员的数组
+
+        console.log(box)
+        console.log(first_li)
+        console.log(All_li)
+        console.log(p[0])
+
+
+        //另外一些老方法
+        //根据id名获取，只获取一个元素，括号里直接写名字
+        const BOX = document.getElementById('box')
+        //根据标签名获取，获取所有同标签名元素，括号里直接写名字
+        const First_li = document.getElementsByTagName('ul li:first-child')
+        //根据类名获取，获取所有同类名的元素，括号里直接写名字
+        const P = document.getElementsByClassName('.P')
+    </script>
+</body>
+</html>

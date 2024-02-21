@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message" @keyup.enter="damn">
+        <!-- 加上v-model之后，此时在input里输入的新内容，value就会变，从而message的值也就变了 -->
+        <h2>{{ message }}</h2>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'shit'
+            },
+            methods: {
+                damn: function(){
+                    alert(this.message)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

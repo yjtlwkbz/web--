@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-text="content"></p> <!-- 区别就是v-text指令解析的是字符串 -->
+        <p v-html="content"></p> <!-- v-html解析的是HTML标签代码 -->
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                content: '<a href="https://www.bilibili.com/video/BV1kC4y1E73B/?spm_id_from=333.337.search-card.all.click&vd_source=a14033a9dc67d26cdf6d03be90667434">我是HTML里的超链接</a>'
+            }
+        })
+    </script>
+    
+</body>
+</html>

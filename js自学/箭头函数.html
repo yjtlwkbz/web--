@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1、箭头函数用于简洁的代替匿名函数，具名函数就别用箭头函数代替了
+        //2、箭头函数不用带this
+        
+        //1、新老方法对比
+        //老方法
+        // const fn = function(){
+        //     console.log('123')
+        // }
+        const fn = () =>{
+            console.log('123')
+        }
+        fn()
+
+        //可以传参
+        const fn1 = (x) =>{
+            console.log(x)
+        }
+        fn1('参数')
+
+        //一个参数时可以省略小括号
+        const fn2 = x =>{
+            console.log(x)
+        }
+        fn2('一个参数')
+
+        //只有一行代码时甚至大括号都可以省略
+            //不过会判断这一行是啥代码
+            //如果是方法、函数就执行
+            const fn3 = x => console.log(x)
+            fn3('一个参数')
+            const form = document.querySelector('form')
+            form.onclick = e => e.preventDefault()
+            //如果是一句表达式，就是返回返回值
+            const fn4 = (x,y) => x + y
+            console.log(fn4(1,2))//返回1+2=3
+
+        //箭头函数可以返回对象，当函数体有（{}）括号包起来就是返回里面的对象
+        // const fn5 = Uname => { name : Uname }
+        //但是这样会报错，因为对象的语法也是{...},程序不知道你这个是对象还是函数，要用(包起来)
+        const fn5 = Uname => ({ name : Uname })
+        console.log(fn5('岑梓铭'))
+
+        //另外，箭头函数只可以用剩余参数，不可以用动态参数
+        // 例子：
+        let getSum = (...args) => {
+            //注意！！！“...”不要写进去
+            console.log(args)
+            let sum = 0
+            for(let i=0; i<args.length; i++){
+                sum += args[i]
+            }
+            return sum
+        }
+        let Sum1 = getSum(1,2,3)
+        let Sum2 = getSum(1,2,3,4,5,6)
+        let Sum3 = getSum(1,2,3,7,8,9,4,23,566)
+        document.write(`<br>`+Sum1+`<br>`)
+        document.write(Sum2+`<br>`)
+        document.write(Sum3+`<br>`)
+
+
+        //最后为什么不要用this？
+        //因为没意义，回顾一下，
+        //【this指向的是谁调用它】
+        //在单纯整个JavaScript里this指的是window对象，因为大体上每个普通函数的调用者都是window, 【fn() = window.fn()】
+        //1、对象里的函数里的this才是指向这个对象，而不是window
+        //   这里再解释一下，【对象里没有this！】【函数作用域里才有this】，所以对象的函数里有thisl，然后函数的this才找谁调用它，是对象调用的，那就指向对象
+        //2、每个DOM对象的事件函数里的this指向这个DOM对象，例子：button.onclick = function(){ console.log(this) }，此时this指向button
+        //3、然后箭头函数里的this是调用它上一级的作用域，也就是跳一级
+        // 比如说，创建了一个对象，里面创建一个箭头函数，里面有this，因为箭头函数本身又不会创建this对象，对象又没有this，那然后就找到对象的上一级：window
+    </script>
+</body>
+</html>

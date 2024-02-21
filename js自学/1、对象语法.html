@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 对象
+        // 语法：  1、let xxx = {
+        //              属性1名:...,
+        //              属性2名:...,
+        //              方法1名:function(){...},
+        //              方法2名:function(){...},
+        //              ....
+        //          }
+        //        2、let xxx = new Object()
+        // 例子：
+        let a = {
+            'c-name': 'czm',//特殊符号要用''包起来，就像数据库是用[]
+            age: 18,
+            gender: '男',
+            song: function(){
+                console.log('唱歌')
+            },
+            show: function(){
+                document.write('哈哈哈')
+            }
+        }
+        //增、看、改都是直接“对象名.属性/方法”，就删是“delete 对象.属性/方法”
+        //另外查'c-name'这种的时候要加[],例如：console.log(a['c-name'])
+
+
+        // 对象数组
+        // let xxx = [{...},{...},{...}...]
+        // 例子：
+        let data = [
+            {
+                src: 'hdvhv.ggjg',
+                title: 'shit',
+                num: 1125
+            },
+            {
+                src: 'hdvhv.ggjg',
+                title: 'shit',
+                num: 1125
+            },
+            {
+                src: 'hdvhv.ggjg',
+                title: 'shit',
+                num: 1125
+            }
+        ]
+
+        //数组循环用for(let i=0; i.....)
+        //对象遍历用for(let i in 对象名),跟Java一样，就是“：”换成“in”
+
+        //冒泡排序
+        let b = [2,4,3,6,5,1]
+        for(let i=0; i<b.length-1; i++){
+            let tmp = 0;
+            for(let j=0; j<b.length-1; j++){
+                if(b[j+1] < b[j]){
+                    tmp = b[j];
+                    b[j] = b[j+1];
+                    b[j+1] = tmp;
+                }
+            }
+        }
+        for(let i=0; i<6; i++){
+            document.write(b[i])
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //第一种方法就是老方法，在URL地址后面用【?key=value】的形式进行字符串拼接
+        const xhr = new XMLHttpRequest()
+        let city = prompt('输入省份')
+        xhr.open('GET','https://hmajax.itheima.net/api/city?pname='+city)
+        xhr.addEventListener('loadend',()=>{
+            console.log(xhr.response)
+        })
+        xhr.send()
+
+        //第二种方法就是先用URLSearchParams()对象，传入一个包含参数的对象：{ 参数1,参数2... }
+        //然后再用.toString()的方法，把包【含参数的对象】变成【字符串】，再拼接到URL地址就简单了
+        let city2 = prompt('再输入另一个省份')
+        const urlParamas = new URLSearchParams({
+            pname: city2
+        })
+        //这里注意一点，我们尝试输出.toString()时会发现不是“city=xx省”这种形式，而是一堆乱码，这是因为浏览器传输字符串数据时就是按照URL编码来的
+        //那么这对乱码我们看不懂，浏览器懂就行，拼接到URL地址的时候浏览器会认的出来的
+        //另外，对象.toString()的结果是把整个对象的所有参数和值都变成：【参数1=乱码 参数2=乱码......】的形式，其实也不用记这么多，知道就行
+        console.log(urlParamas.toString())//输出：city=%E5%B9%BF%E4%B8%9C%E7%9C%81
+        const xhr2 = new XMLHttpRequest()
+        xhr2.open('GET',`https://hmajax.itheima.net/api/city?${urlParamas.toString()}`)
+        xhr2.addEventListener('loadend',()=>{
+            console.log(xhr2.response)
+        })
+        xhr2.send()
+    </script>
+</body>
+</html>

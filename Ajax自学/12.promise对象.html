@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1、这里“resolve”、“reject”参数可以有可以没有
+        //   没有参数的情况下，你在Promise对象参进去的函数参数里，执行的什么结果就没办法带出去给别人用
+        //   那么有参数的情况，就必须是两个，名字可以任意自定义，但是一般情况大家都写“resolve”、“reject”来代表成功参数、失败参数
+        //   然后传进来的这两个参数，就是两个回调函数
+        const p = new Promise(function( resolve , reject ){
+            //这里兑现“承诺”，也就是执行你想要执行的异步任务
+
+            //比如我这里想要3秒之后打印“Oh yes!!成功了卧槽”这句话
+            setTimeout(()=>{
+                //resolve函数代表成功，当成功时就把传入给resolve的参数输出
+                resolve('Oh yes!!成功了卧槽')
+
+                //reject函数代表失败,里面是传一个“错误”对象，失败时就把传给“错误对象”的参数输出
+                reject(new Error('shit!!!失败啦！'))
+            },3000)
+            //注意成功、失败只能输出其一
+            //一旦状态改变，也就是从【pending待定】，变成了【fullfilled成功】或【rejected失败】，那么结果就不会在改变
+            //像这里我成功和失败的回调函数都存在，但是很明显这个程序目前不会有别的意外导致它执行失败，那么就只会执行【成功函数】，那么【失败函数】起不到影响作用
+            //这两个的函数参数的作用，就是当你在外面调用了Promise对象的.then()和.catch()方法时
+            //成功了就把“resolve成功函数”的活交给.then()来执行，失败就把“reject失败函数”的活交给.catch()来执行
+            //这么理解，它两就是黑白两道的大佬，只负责“发话”；.then()和.catch()是它两的“打手、大臣”，替它两说话、干脏活的
+        })
+
+        p.then(res => {
+            console.log(res) //——>输出“Oh yes!!成功了卧槽”
+        }).catch(err => {
+            console.log(err) //——>输出“shit!!!失败啦！”
+        })
+                
+        //这还有一种写法  
+        //这种写法要注意，如果只输出成功结果，那么.then()只需要一个回调函数即可
+        //但是如果只输出失败结果，那么必须要有两个函数，而且会自动判断将失败参数传给第二个函数，由第二个函数输出
+        // p.then(
+        //     function(sucess){
+        //         console.log('1')
+        //         console.log(sucess) //这里自定义参数sucess就是resolve()的参数
+        //     }
+        //     ,
+        //     function(error){
+        //         console.log('2')
+        //         console.log(error) //这里自定义参数error就是reject()的new Error()对象的参数
+        //     }
+        // )
+
+        //.then()就可以理解为一个“定时器”，他就是一个大的回调函数体，里面都是各个回调函数，.then()函数里的所有函数都会在普通函数执行完，栈区空后，从队列一个一个压回栈执行
+        console.log('///////////')//这里可以证明，结果会先打印出'////////////////'再接着打印.then()函数里的内容
+    </script>
+</body>
+</html>

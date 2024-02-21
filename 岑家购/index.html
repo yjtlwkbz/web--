@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="css/index_css.css">
+	<!-- 要正确引用 Font Awesome 库，可以在 HTML 文件的 <head> 元素内添加如下代码 -->
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+	<!-- <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"> -->
+	<!-- 这个链接使用了 Cloudflare 的 CDN 服务，它会让你的网站更加快速、安全。将此代码放置在 <head> 标签的末尾即可。
+		还可以下载 Font Awesome 的文件并把它们存储在本地，但是通过 CDN 引用的方式更加方便，因为不需要下载和更新本地文件。 -->
+
+	<title>岑家购网站</title>
+
+</head>
+
+<body>
+	<!-- js专区 -->
+
+
+	<div class="header">
+		<div class="container">
+			<a href="index.html"><img src="img/岑家购LOGO.png" alt="Your Logo"></a>
+			<nav>
+				<ul>
+					<li><a href="#">首页</a></li>
+					<li><a href="#">服饰</a></li>
+					<li><a href="#">家电</a></li>
+					<li><a href="#">母婴</a></li>
+					<li><a href="#">数码</a></li>
+					<li><a href="#">更多</a></li>
+					<li class="denglu"><a href="login.html">登录/注册</a></li>
+				</ul>
+				<div class="search-box">
+					<input type="text" placeholder="Search...">
+					<button class="search-button">
+						搜索
+						<i class="fal fa-paw-alt"></i>
+					</button>
+					<!-- 这里的i是按钮元素中的字体图标（使用了 Font Awesome 提供的图标库），上网搜会有相应的图标，只需要引用<i class="fas fa-search"> -->
+				</div>
+				<div class="sub-nav">
+					<ul>
+						<li><a href="#">家具</a></li>
+						<li><a href="#">日用</a></li>
+						<li><a href="#">食品</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+	<script>// 获取所有 <a> 元素
+		const links = document.getElementsByTagName('a');
+
+		// 遍历每个 <a> 元素
+		for (let i = 0; i < links.length; i++) {
+			// 为每个 <a> 元素添加 click 事件监听器
+			links[i].addEventListener('click', () => {
+				// 这段代码的意思是将一个指定网页中的元素链接（links[i].href）跳转至当前窗口所指向的网址（window.location.href）
+				window.location.href = links[i].href;
+				// 翻译成大白话即：将获取到的【links[i].href】网站赋给【当前页面的网站】，也即【当前网页】跳转到【指定网页】
+			});
+			// 箭头函数是ES6新增的一种函数声明方式，其语法形式比传统的function声明更加精简，更容易理解。
+			// 箭头函数和传统的函数声明写法所执行的操作相同，都是将当前页面跳转到链接指向的href地址。
+		}
+	</script>
+	<div class="slider">
+		<img src="img/轮播图1.webp" alt="轮播图1">
+		<img src="img/轮播图2.jpg" alt="轮播图2">
+		<img src="img/轮播图3.jpg" alt="轮播图3">
+		<img src="img/轮播图4.webp" alt="轮播图4">
+		<img src="img/轮播图5.jpg" alt="轮播图5">
+	</div>
+	<script>
+		let slideIndex = 0;
+		showSlides();
+
+		function showSlides() {
+			let i;
+			let slides = document.querySelectorAll(".slider img");
+			for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+			}
+			slideIndex++;
+			if (slideIndex > slides.length) {
+				slideIndex = 1
+			}
+			slides[slideIndex - 1].style.display = "block";
+			setTimeout(showSlides, 3000); // 切换时间为 3 秒
+		}
+	</script>
+
+	<div class="recommend">
+		<h2></h2>
+	</div>
+
+	<div class="middle">
+		<div class="row">
+			<div class="box">
+				<img src="img/服饰/服饰1.avif" alt="图片1">
+				<h3>MLB AIRMAX官方短袖T恤女装2022年新款百搭圆领上衣体恤纯棉半袖 <span class="price">价格：19.99</span></h3>
+				<p>服饰</p>
+			</div>
+			<div class="box">
+				<img src="img/数码/数码1.avif" alt="图片2">
+				<h3>Nikon 尼康 Z6 Z7 Z6II Z7II全幅微单相机 全新正品国行 顺丰包邮<span class="price">价格：129.99</span></h3>
+				<p>数码</p>
+			</div>
+			<div class="box">
+				<img src="img/服饰/服饰2.webp" alt="图片3">
+				<h3>短袖T男士桑蚕丝中年短袖t恤爸爸夏装纯色高档商务翻领POLO衫体恤<span class="price">价格：29.99</span></h3>
+				<p>服饰</p>
+			</div>
+			<div class="box">
+				<img src="img/母婴/母婴1.webp" alt="图片4">
+				<h3>英国伊维诗乐婴儿定型枕透气头型矫正0-1岁新生儿宝宝防偏头枕头<span class="price">价格：39.99</span></h3>
+				<p>母婴</p>
+			</div>
+			<div class="box">
+				<img src="img/家电/家电6.webp" alt="图片5">
+				<h3>美的无尘感G4洗地机家用拖吸一体洗拖地吸扫拖三合一吸尘拖地机G5<span class="price">价格：39.99</span></h3>
+				<p>家电</p>
+			</div>
+			<div class="box">
+				<img src="img/数码/数码2.webp" alt="图片6">
+				<h3>桌面台式电脑音响笔记本游戏小巧重低音多媒体音箱USB有源音箱<span class="price">价格：39.99</span></h3>
+				<p>数码</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="box">
+				<img src="img/家电/家电5.avif" alt="图片7">
+				<h3>迅达燃气热水器零冷水13升16L家用天然气智能恒温官方旗舰店DS828<span class="price">价格：49.99</span></h3>
+				<p>家电</p>
+			</div>
+			<div class="box">
+				<img src="img/日用/日用1.avif" alt="图片8">
+				<h3>创意居家居厨房用品用具小百货家用大全好物生活用日用品收纳神器<span class="price">价格：59.99</span></h3>
+				<p>日用</p>
+			</div>
+			<div class="box">
+				<img src="img/家具/家具1.avif" alt="图片9">
+				<h3>轻奢商务休闲沙发高档售楼处桌椅酒店大堂办公洽谈接待室双人沙发<span class="price">价格：69.99</span></h3>
+				<p>家具</p>
+			</div>
+			<div class="box">
+				<img src="img/服饰/服饰3.webp" alt="图片10">
+				<h3>拼色宽松刺绣白色短袖t恤女2023夏季新款撞色半袖情侣上衣ins潮牌<span class="price">价格：29.99</span></h3>
+				<p>服饰</p>
+			</div>
+			<div class="box">
+				<img src="img/服饰/服饰4.avif" alt="图片11">
+				<h3>棕色正肩短袖t恤女2023新款夏季小众设计感美式复古上衣半袖女款<span class="price">价格：29.99</span></h3>
+				<p>服饰</p>
+			</div>
+			<div class="box">
+				<img src="img/数码/数码3.webp" alt="图片12">
+				<h3>艾特铭客金刚6蓝牙音箱户外K歌无线便携式小音响大音量60W双喇叭<span class="price">价格：29.99</span></h3>
+				<p>数码</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="box">
+				<img src="img/母婴/母婴2.webp" alt="图片13">
+				<h3>幼蓓花息拉拉裤尿不湿轻薄透气干爽新生婴儿男女宝宝纸尿裤 乐友<span class="price">价格：79.99</span></h3>
+				<p>母婴</p>
+			</div>
+			<div class="box">
+				<img src="img/数码/数码4.avif" alt="图片14">
+				<h3>小米Redmi Pad红米平板官方旗舰正品二合一5电脑46爱派五i<span class="price">价格：89.99</span></h3>
+				<p>数码</p>
+			</div>
+			<div class="box">
+				<img src="img/家具/家具2.avif" alt="图片15">
+				<h3>德国outoon儿童学习桌书桌可升降实木课桌家用小学生写字桌椅套装<span class="price">价格：99.99</span></h3>
+				<p>家具</p>
+			</div>
+			<div class="box">
+				<img src="img/母婴/母婴3.webp" alt="图片21">
+				<h3>coolbaby折叠婴儿床新生儿可移动拼接大床便携式多功能摇篮宝宝床<span class="price">价格：109.99</span></h3>
+				<p>母婴</p>
+			</div>
+			<div class="box">
+				<img src="img/家电/家电4.avif" alt="图片22">
+				<h3>东芝鲜饭煲多功能家用IH智能小型日本电饭煲3L蒸煮饭锅小2-3-4人<span class="price">价格：119.99</span></h3>
+				<p>家电</p>
+			</div>
+			<div class="box">
+				<img src="img/家具/家具3.avif" alt="图片23">
+				<h3>芝华仕现代奶油茶几电视柜组合小户型客厅圆形岩板家用家具PT059<span class="price">价格：129.99</span></h3>
+				<p>家具</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="box">
+				<img src="img/数码/数码5.avif" alt="图片24">
+				<h3>4G全网通纽曼M560正品老年手机超长待机老人机大屏幕大字大声音男女士电信版学生专用智能按键手机<span class="price">价格：139.99</span></h3>
+				<p>数码</p>
+			</div>
+			<div class="box">
+				<img src="img/服饰/服饰5.avif" alt="图片25">
+				<h3>PANCOAT开衫毛衣情侣复古潮牌毛衫外套<span class="price">价格：149.99</span></h3>
+				<p>服饰</p>
+			</div>
+			<div class="box">
+				<img src="img/母婴/母婴4.avif" alt="图片26">
+				<h3>日本Ulovazn礼盒~婴幼儿满月套装百天男女宝宝送礼物婴儿周岁玩具<span class="price">价格：159.99</span></h3>
+				<p>母婴</p>				
+			</div>
+			<div class="box">
+				<img src="img/食品/食品1.webp" alt="图片27">
+				<h3>零食大礼包组合装整箱小吃休闲食品送儿童女朋友的生日礼物盒大全<span class="price">价格：169.99</span></h3>
+				<p>食品</p>
+			</div>
+			<div class="box">
+				<img src="img/母婴/母婴5.avif" alt="图片28">
+				<h3>babycare婴儿健身架脚踏钢琴新生儿婴儿礼物0-3-6月宝宝益智玩具<span class="price">价格：179.99</span></h3>
+				<p>母婴</p>
+			</div>
+			<div class="box">
+				<img src="img/食品/食品2.avif" alt="图片29">
+				<h3>坚果零食小吃休闲食品干果混合大礼包夏威夷果巴旦木杏仁礼盒爆款<span class="price">价格：189.99</span></h3>
+				<p>食品</p>
+			</div>
+		</div>		
+		<div class="row">
+			<div class="box">
+				<img src="img/数码/数码6.avif" alt="图片30">
+				<h3>蓝牙耳机2022年新款降噪男女无线挂耳式适用华为苹果oppo开车专用<span class="price">价格：199.99</span></h3>
+				<p>数码</p>
+			</div>
+			<div class="box">
+				<img src="img/食品/食品3.avif" alt="图片31">
+				<h3>好吃哭了！巴旦木坚果小饼芝士下午茶零食网红办公室休闲小吃<span class="price">价格：209.99</span></h3>
+				<p>食品</p>
+			</div>
+			<div class="box">
+				<img src="img/家具/家具4.avif" alt="图片32">
+				<h3>现代简约轻奢真皮床意式极简主卧双人1.8米小户型软包齐边储物床<span class="price">价格：219.99</span></h3>
+				<p>家具</p>
+			</div>
+			<div class="box">
+				<img src="img/家具/家具5.webp" alt="图片33">
+				<h3>网红民宿少女心卧室阳台飘窗榻榻米懒人沙发可睡躺床上靠背椅<span class="price">价格：229.99</span></h3>
+				<p>家具</p>
+			</div>
+			<div class="box">
+				<img src="img/食品/食品4.avif" alt="图片34">
+				<h3>渣渣灰麻酱米线招牌云南过桥米线方便香辣肉酱米粉麻将懒人速食辉<span class="price">价格：239.99</span></h3>
+				<p>食品</p>
+			</div>
+			<div class="box">
+				<img src="img/家电/家电3.webp" alt="图片35">
+				<h3>大宇空气循环扇家用轻音立式智能摇头落地扇净化氛围灯小型电风扇<span class="price">价格：249.99</span></h3>
+				<p>家电</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="box">
+				<img src="img/家电/家电2.webp" alt="图片36">
+				<h3>西门子10公斤滚筒家用全自动洗衣机官方变频洗烘一体机一级2X10<span class="price">价格：259.99</span></h3>
+				<p>家电</p>
+			</div>
+			<div class="box">
+				<img src="img/食品/食品5.avif" alt="图片37">
+				<h3>纯奶手撕面包吐司全麦老拉丝零食休闲小吃食品整箱营养早餐奶香味
+					已售 9000+<span class="price">价格：269.99</span></h3>
+				<p>食品</p>
+			</div>
+			<div class="box">
+				<img src="img/家具/家具6.jpg" alt="图片38">
+				<h3>衣柜家用卧室经济型简易组装结实耐用木质收纳柜子推拉门组装柜子<span class="price">价格：279.99</span></h3>
+				<p>家具</p>
+			</div>
+			<div class="box">
+				<img src="img/家电/家电1.avif" alt="图片39">
+				<h3>美的电热水器50/60/80升家用一级能效大容量卫生间洗澡速热JM1<span class="price">价格：279.99</span></h3>
+				<p>家电</p>
+			</div>
+			<div class="box">
+				<img src="img/母婴/母婴6.avif" alt="图片40">
+				<h3>英菲比奇ppsu奶瓶新生婴儿宽口径喝水耐摔大宝宝带硅胶吸管防胀气<span class="price">价格：279.99</span></h3>
+				<p>母婴</p>
+			</div>
+			<div class="box">
+				<img src="img/数码/数码7.avif" alt="图片41">
+				<h3>蓝牙耳机无线原装正品四代适用苹果iPhone14华强北2023新款4专用<span class="price">价格：279.99</span></h3>
+				<p>数码</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="box">
+				<img src="img/服饰/服饰6.webp" alt="图片44">
+				<h3>妈妈夏装中老年女装奶奶套装短袖T恤两件套上衣老太太老人衣服薄<span class="price">价格：279.99</span></h3>
+				<p>服饰</p>
+			</div>
+			<div class="box">
+				<img src="img/食品/食品6.avif" alt="图片45">
+				<h3>嘉士利果乐果香果酱夹心饼干混合装多口味零食小吃休闲食品小圆饼<span class="price">价格：279.99</span></h3>
+				<p>食品</p>
+			</div>
+			<div class="box">
+				<img src="img/日用/日用2.avif" alt="图片46">
+				<h3>自由点卫生巾超长夜用430mm舒睡超薄透气棉柔亲肤学生姨妈巾4包<span class="price">价格：279.99</span></h3>
+				<p>日用</p>
+			</div>
+			<div class="box">
+				<img src="img/日用/日用3.webp" alt="图片47">
+				<h3>保温杯定制结婚过寿回礼聚会纪念开业广告订制logo批发印字刻字<span class="price">价格：279.99</span></h3>
+				<p>日用</p>
+			</div>
+			<div class="box">
+				<img src="img/日用/日用4.webp" alt="图片48">
+				<h3>毕业生日送男生男友朋友男士老公纪念日礼物初高中大学实用的礼品<span class="price">价格：279.99</span></h3>
+				<p>日用</p>
+			</div>
+			<div class="box">
+				<img src="img/日用/日用5.webp" alt="图片49">
+				<h3>全棉时代奈丝公主纯棉卫生巾薄日夜用姨妈巾官方整箱组合装128片<span class="price">价格：279.99</span></h3>
+				<p>日用</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="box">
+				<img src="img/日用/日用6.avif" alt="图片50">
+				<h3>厨房用品家用大全用具百货清洁小物件家居家庭生活日用品创意实用<span class="price">价格：279.99</span></h3>
+				<p>日用</p>
+			</div>
+			<div class="box">
+				<img src="img/日用/日用7.avif" alt="图片51">
+				<h3>新款创意礼品套装企业公司年会送客户送员工伴手礼可定制LOGO礼物<span class="price">价格：279.99</span></h3>
+				<p>日用</p>
+			</div>
+			<div class="box">
+				<img src="img/日用/日用8.avif" alt="图片52">
+				<h3>家居日用品生活小百货家用大全大学生男女住校生宿舍寝室收纳神器<span class="price">价格：279.99</span></h3>
+				<p>日用</p>
+			</div>
+			<div class="box">
+				<img src="img/服饰/服饰8.avif" alt="图片53">
+				<h3>特别的情侣装2023新款夏季装t恤潮牌短袖网红小众高级感套装衣服<span class="price">价格：279.99</span></h3>
+				<p>服饰</p>
+			</div>
+			<div class="box">
+				<img src="img/日用/日用9.avif" alt="图片54">
+				<h3>家居家用小东西居家生活日用品家庭厨房卫生间用品用具小百货大全<span class="price">价格：279.99</span></h3>
+				<p>日用</p>
+			</div>
+			<div class="box">
+				<img src="img/服饰/服饰9.webp" alt="图片55">
+				<h3>中年妈妈夏装套装气质高贵40岁50中老年女装夏季时尚雪纺衫两件套<span class="price">价格：279.99</span></h3>
+				<p>服饰</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="box">
+				<img src="img/服饰/服饰7.webp" alt="图片42">
+				<h3>夏季纯棉印花男士短袖T恤 圆领宽松潮牌半袖体恤加肥加大码上衣服<span class="price">价格：279.99</span></h3>
+				<p>服饰</p>
+			</div>
+			<div class="box">
+				<img src="img/家具/家具7.avif" alt="图片43">
+				<h3>CLCR入户玄关桌意式简约设计师样板房家具进门靠墙别墅现代玄关台<span class="price">价格：279.99</span></h3>
+				<p>家具</p>
+			</div>
+			<div class="box">
+				<img src="img/食品/食品7.webp" alt="图片56">
+				<h3>中粮山萃牛肉干内蒙古风干肉干特产孕妇零食手撕旗舰店真空端午节
+					已售 3万+<span class="price">价格：279.99</span></h3>
+				<p>食品</p>
+			</div>
+			<div class="box">
+				<img src="img/服饰/服饰10.avif" alt="图片57">
+				<h3>短款夏季方领ins潮设计感小众U领带胸垫bra短袖T恤外穿内搭上衣女<span class="price">价格：279.99</span></h3>
+				<p>服饰</p>
+			</div>
+			<div class="box">
+				<img src="img/日用/日用9.avif" alt="图片54">
+				<h3>家居家用小东西居家生活日用品家庭厨房卫生间用品用具小百货大全<span class="price">价格：279.99</span></h3>
+				<p>日用</p>
+			</div>
+			<div class="box">
+				<img src="img/日用/日用7.avif" alt="图片51">
+				<h3>新款创意礼品套装企业公司年会送客户送员工伴手礼可定制LOGO礼物<span class="price">价格：279.99</span></h3>
+				<p>日用</p>
+			</div>
+		</div>
+	</div>
+		<script>
+			const myApp = {
+				// 获取所有box元素
+				boxes: document.querySelectorAll('.box'),
+
+				// 获取导航栏的ul元素
+				navUl: document.querySelector('.header nav ul'),
+
+				// 获取"更多"的li元素
+				moreLi: document.querySelectorAll('.header nav ul li')[5],
+
+				// 获取精品推荐区的h2元素
+				recommendTitle: document.querySelector('.recommend h2'),
+
+				// 获取二级导航的元素
+				subNav: document.querySelector('.sub-nav'),
+
+				// 初始化函数
+				init() {
+					// 给导航栏的每个li元素添加点击事件监听器
+					this.navUl.addEventListener('click', event => {
+						// 判断点击的是哪个li元素
+						switch (event.target.innerText) {
+							case '首页':
+								this.subNav.style.display = 'none';
+								// 当用户点击了首页时，将所有box元素都显示出来
+								this.boxes.forEach(box => {
+									box.style.display = 'block';
+								});
+								break;
+							case '服饰':
+								this.subNav.style.display = 'none';
+								this.recommendTitle.innerText = '服饰';
+								this.filterBoxesByKeyword('服饰');
+								break;
+							case '家电':
+								this.subNav.style.display = 'none';
+								this.recommendTitle.innerText = '家电';
+								this.filterBoxesByKeyword('家电');
+								break;
+							case '母婴': this.subNav.style.display = 'none';
+								this.recommendTitle.innerText = '母婴';
+								this.filterBoxesByKeyword('母婴');
+								break;
+							case '数码': this.subNav.style.display = 'none';
+								this.recommendTitle.innerText = '数码';
+								this.filterBoxesByKeyword('数码');
+								break;
+							case '更多':
+								// 显示二级导航
+								this.subNav.style.display = 'block';
+								break;
+							default:
+								break;
+						}
+					});
+
+					// 给二级导航的每个li元素添加点击事件监听器
+					const subNavLi = this.subNav.querySelectorAll('li');
+					subNavLi.forEach(li => {
+						li.addEventListener('click', event => {
+
+							// 获取点击的内容
+							const keyword = event.target.innerText;
+							// 更新标题
+							this.recommendTitle.innerText = keyword;
+							this.filterBoxesByKeyword(keyword);
+							this.subNav.style.display = 'none'; // 隐藏二级导航页面
+						});
+					});
+
+					// 搜索按钮的点击事件监听器
+					const searchButton = document.querySelector('.search-button');
+					searchButton.addEventListener('click', () => {
+						// 获取搜索框中输入的关键字
+						const keyword = document.querySelector('.search-box input').value;
+
+						// 根据关键字对box进行筛选，并更新标题
+						this.filterBoxesByKeyword(keyword);
+					});
+
+					// 循环遍历每个box元素
+					this.boxes.forEach(box => {
+						// 添加鼠标悬停时的事件监听器
+						box.addEventListener('mouseover', () => {
+							// 添加阴影效果
+							box.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.1)';
+							// 添加放大效果
+							box.style.transform = 'scale(1.05)';
+							// 指针变为小手
+							box.style.cursor = 'pointer';
+							// 添加flash效果
+							const textElements = box.getElementsByTagName('h3');
+							for (let i = 0; i < textElements.length; i++) {
+								textElements[i].classList.add('flash');
+							}
+							const pElements = box.getElementsByTagName('p');
+							for (let i = 0; i < pElements.length; i++) {
+								pElements[i].classList.add('flash');
+							}
+						});
+						// 添加鼠标离开时的事件监听器
+						box.addEventListener('mouseout', () => {
+							// 移除阴影效果和放大效果
+							box.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+							box.style.transform = 'none';
+							// 指针设置回默认状态
+							box.style.cursor = 'default';
+							// 移除flash效果
+							const textElements = box.getElementsByTagName('h3');
+							for (let i = 0; i < textElements.length; i++) {
+								textElements[i].classList.remove('flash');
+							}
+							const pElements = box.getElementsByTagName('p');
+							for (let i = 0; i < pElements.length; i++) {
+								pElements[i].classList.remove('flash');
+							}
+						});
+					});
+
+					// 对商品价格进行排序并重新布局
+					this.sortBoxesByPrice();
+				}
+				,
+				// 筛选box元素的函数
+				filterBoxesByKeyword(keyword) {
+					// 更新标题
+					this.recommendTitle.innerText = keyword;
+
+					// 循环遍历每个box元素
+					this.boxes.forEach(box => {
+						// 获取盒子的文本描述
+						const description = box.querySelector('p').innerText;
+
+						// 判断是否要显示该盒子
+						if (keyword === '精品推荐' || description.includes(keyword)) {
+							box.style.display = 'block';
+						} else {
+							box.style.display = 'none';
+						}
+					});
+
+					// 对商品价格进行排序并重新布局
+					this.sortBoxesByPrice();
+				},
+
+
+			};
+
+			// 调用初始化函数
+			myApp.init();
+
+			function createRow(boxes) {
+				const row = document.createElement('div');
+				row.classList.add('row');
+				boxes.forEach(function (box) {
+					row.appendChild(box);
+				});
+				return row;
+			}
+
+		</script>
+
+		<script>
+			// 获取所有商品盒子元素
+			const boxes = document.querySelectorAll('.box');
+
+			// 为每一个商品盒子添加点击事件
+			boxes.forEach(box => {
+				box.addEventListener('click', function () {
+					// 弹出确认购买提示框
+					if (confirm('确认购买吗？')) {
+						alert('购买成功！');
+						// 如果用户点击确认，则执行下一步操作
+						// TODO: 在此处添加跳转到商品详情页或购物车页面等下一步操作的代码
+					}
+				});
+			});
+		</script>
+</div>
+
+
+
+
+<div id="footer">
+	<div id="footer1" style="background-color: white;">
+		<dl id="ensure">
+			<dt><span>购物指南</span></dt>
+			<dd>
+				<a href="//register.tmall.com/" target="_blank">免费注册</a>
+				<a href="//register.tmall.com/" target="_blank">切换账户</a>
+				<a href="https://www.alipay.com/user/reg_select.htm" target="_blank">开通支付宝</a> 
+				<a href="https://www.alipay.com/user/login.htm?goto=https%3A%2F%2Fwww.alipay.com%2Fuser%2Finpour_request.htm" target="_blank">支付宝充值</a>
+			</dd>
+		</dl>
+		<dl id="beginner">
+			<dt><span>岑家购保障</span></dt>
+			<dd>
+				<a href="//rule.tmall.com/tdetail-8555.htm?spm=a223k.10052707.0.0.1ccb496dFP2632&amp;tag=self" target="_blank">发票保障</a> 
+				<a href="//service.tmall.com/support/tmall/knowledge-1124063.htm" target="_blank">售后规则</a> 
+				<a href="//rule.tmall.com/tdetail-11000266.htm?spm=a223k.10052707.0.0.3dca496dIX5vdg&amp;tag=self" target="_blank">物流时效保障</a>
+				<a href="//rule.tmall.com/tdetail-8555.htm?spm=a223k.10052707.0.0.1ccb496dFP2632&amp;tag=self" target="_blank">法律保障</a> 
+			</dd>
+		</dl>
+		<dl id="payment">
+			<dt><span>支付方式</span></dt>
+			<dd>
+				<a href="https://payservice.alipay.com/intro/index.htm?c=kjzf" target="_blank">慢捷支付</a> 
+				<a href="https://payservice.alipay.com/intro/index.htm?c=xyk" target="_blank">信用卡透支</a> 
+				<a href="https://payservice.alipay.com/intro/index.htm?c=yeb" target="_blank">余额宝透支</a> 
+				<a href="https://payservice.alipay.com/intro/index.htm?c=hb" target="_blank">蚂蚁花呗逾期</a>
+			</dd>
+		</dl>
+		<dl id="seller">
+			<dt><span>商家服务</span></dt>
+			<dd>
+				<a href="//guize.tmall.com/" target="_blank">岑哥规则</a> 
+				<a href="//zhaoshang.tmall.com/" target="_blank" class="join">商家滚蛋</a> 
+				<a href="//myseller.taobao.com/home.htm/QnworkbenchHome/#/index" target="_blank">商家洗浴中心</a> 
+				<a href="//rulechannel.tmall.com/tmall?spm=a223k.27234695.8303478760.4.107b41ceGjKtSi#/rules?cId=1373" target="_blank">平台服务协议</a>
+			</dd>
+		</dl>
+	</div>
+	<div id="footer2" style="background-color: black;">
+		<div class="mui-global-fragment-load1" data-fragment="tmbase/mui_footer_link" data-spm-anchor-id="875.7931836.0.i2.723f4265NJzEw8">
+			<p class="footer-tmallinfo"> 
+				<br><br>
+				<a href="//pages.tmall.com/wow/seller/act/zhaoshangproduce" target="_blank">关于岑家购 </a> 
+				<a href="//service.tmall.com/support/tmall/tmallHelp.htm" target="_blank">商家被宰大厅 </a> 
+				<a href="//open.taobao.com" target="_blank">关闭平台 </a> 
+				<a href="//job.alibaba.com/zhaopin/index.htm" target="_blank">诚聘废物 </a> 
+				<a href="//consumerservice.taobao.com/contact-us" target="_blank">拉黑我们 </a> 
+				<a href="//xtao.tmall.com?tracelog=tmallfoot" target="_blank">网站合作 </a> 
+				<a href="//terms.alicdn.com/legal-agreement/terms/suit_bu1_tmall/suit_bu1_tmall201801121425_43176.html" target="_blank">乱法律声明 </a>
+				<a href="//terms.alicdn.com/legal-agreement/terms/suit_bu1_tmall/suit_bu1_tmall201801031144_60809.html" target="_blank">隐私权政策 </a>
+				<a href="http://ipp.alibabagroup.com/" target="_blank">知识产权 </a>
+				<a href="https://taotian.jubao.alibaba.com" target="_blank">打击举报 </a> 
+				<a class="footer-fp-rule" style="display:none;" href="//rule.tmall.com/trulecycle.htm" target="_blank">规则意见不听 </a>
+				<a class="footer-fp-rule" href="//terms.alicdn.com/legal-agreement/terms/suit_bu1_tmall/suit_bu1_tmall202105131215_46119.html" target="_blank">
+					不当竞争举报 
+				</a>
+			</p>
+			<p class="footer-otherlink"> 
+				<a href="http://www.alibabagroup.com/cn/global/home" target="_blank">广东东软集团</a>| 
+				<a href="//www.taobao.com" target="_blank">东软强网</a> | 
+				<a href="//www.tmall.com/" target="_blank">坑你钱</a> | 
+				<a href="//ju.taobao.com/" target="_blank">聚亏钱</a> | 
+				<a href="http://www.aliexpress.com/" target="_blank">全球速卖通</a> | 
+				<a href="http://www.alibaba.com/" target="_blank">岑家购国际交易市场</a>| 
+				<a href="//www.1688.com/" target="_blank">黑心购</a> | 
+				<a href="//www.alimama.com/" target="_blank">sovo</a> | 
+				<a href="//www.fliggy.com/" target="_blank">飞猪</a> | 
+				<a href="http://www.aliyun.com/" target="_blank">岑梓铭计算</a> | 
+				<a href="http://www.alios.cn/" target="_blank">AliOS</a> | 
+				<a href="//aliqin.tmall.com/" target="_blank">岑哥通信</a> | 
+				<a href="http://www.net.cn/" target="_blank">万网</a> | 
+				<a href="http://www.autonavi.com/" target="_blank">高德</a> | 
+				<a href="http://www.uc.cn/" target="_blank">UC</a> | 
+				<a href="http://www.umeng.com/" target="_blank">友盟</a> | 
+				<a href="http://www.xiami.com/" target="_blank">虾米</a> | 
+				<a href="http://www.dingtalk.com/?lwfrom=20150205115110773" target="_blank">钉钉</a> | 
+				<a href="https://www.alipay.com" target="_blank">支付宝</a> | 
+				<a href="https://s.alibaba.com?scene=clinks" target="_blank">岑哥安全</a>
+			</p>
+			<div class="footer-copyright" data-spm-anchor-id="875.7931836.0.i3.723f4265NJzEw8">
+				<a data-spm-protocol="i" href="https://beian.miit.gov.cn/#/Integrated/index">增值电信业务经营许可证：屌B2-20110446</a>
+				<span style="margin-right:65px;">出版物网络交易平台服务经营备案证：新出发屌备字第2022003号</span>
+				<span style="margin-right:65px;">营业性演出许可证：哈哈哈20213300000101</span>
+				<span style="margin-right:65px;">集邮市场开办者备案：勾八邮备005</span>
+				<br>
+				<span style="margin-right:65px;">互联网违法和不良信息举报电话：0571-81683755 jubao.tb@service.taobao.com</span>
+				<a href="//www.12377.cn/">中国互联网举报中心</a>
+				<a href="https://www.shdf.gov.cn/">中国扫黄打非网</a>
+				<a href="https://jbts.mct.gov.cn/">全国文化和旅游市场网上举报投诉处理系统</a>
+				<a href="https://www.12315.cn/">全国12315平台</a>
+				<p class="footer-liangxinyao-cert" style="display:none;">
+					<span id="ali-health-zy" style="display:inline">
+						<br>
+						<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44011202000911" target="_blank">
+							<img src="./img/浙江公安图标.png">粤公网安备 44011202000911号
+						</a>
+						<a style="margin-right:30px" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">粤ICP备14088652号</a>
+						<a style="margin-right:50px" href="https://alihealth.taobao.com/shop_certificate/index?shop=zy&amp;page_type=certificate_5" target="_blank">医疗器械经营许可证</a>
+						<a style="margin-right:50px" href="https://alihealth.taobao.com/shop_certificate/index?shop=zy&amp;page_type=certificate_7" target="_blank">食品经营许可证</a>
+						<a style="margin-right:50px" href="https://alihealth.taobao.com/shop_certificate/index?shop=zy&amp;page_type=certificate_3" target="_blank">互联网药品信息服务资格证</a>
+						<a style="margin-right:50px" href="https://alihealth.taobao.com/shop_certificate/index?shop=zy&amp;page_type=certificate_1" target="_blank">营业执照</a>
+						<a style="margin-right:50px" href="https://alihealth.taobao.com/shop_certificate/index?shop=zy&amp;page_type=certificate_2" target="_blank">药品经营许可证</a>
+						<a style="margin-right:50px" href="https://alihealth.taobao.com/shop_certificate/index?shop=zy&amp;page_type=certificate_4" target="_blank">第二类医疗器械备案凭证</a>
+						<a style="margin-right:50px" href="https://alihealth.taobao.com/shop_certificate/index?shop=zy&amp;page_type=certificate_6" target="_blank">医疗器械网络销售备案</a>
+						<a href="http://www.nmpa.gov.cn/WS04/CL2042/" target="_blank">国家药品监督管理局</a>
+						<a href="http://www.12315.cn/" target="_blank">全国12315互联网平台</a>
+						<br>
+					</span>
+					<span id="ali-health-global" style="display:none">
+						<br>
+							<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44011202000911" target="_blank">
+								<img src="./img/文化局.avif">粤公网安备 44011202000911号
+							</a>
+							<a style="margin-right:30px" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">粤ICP备14088652号</a>
+							<a style="margin-right:50px" href="https://alihealth.taobao.com/shop_certificate/index?shop=global&amp;page_type=certificate_2" target="_blank">香港商业登记证</a>
+							<a style="margin-right:50px" href="https://alihealth.taobao.com/shop_certificate/index?shop=global&amp;page_type=certificate_3" target="_blank">香港药剂制品批发商牌照</a>
+							<a style="margin-right:50px" href="https://alihealth.taobao.com/shop_certificate/index?shop=global&amp;page_type=certificate_4" target="_blank">香港中成药批发商牌照</a>
+							<a href="http://www.nmpa.gov.cn/WS04/CL2042/" target="_blank">国家药品监督管理局</a>
+							<a href="http://www.12315.cn/" target="_blank">全国12315互联网平台</a>
+							<a href="http://www.gdnet110.gov.cn/?top_keyword" target="_blank">广东省公安厅</a>
+						<br>
+					</span>
+				</p>
+				<br>
+				<a href="http://www.zjjubao.com/">岑哥互联网违法和不良信息保护中心</a>
+				<a href="https://jubao.taobao.com/">全网举报</a>
+				互联网药品信息服务资质证书编号：
+				<a href="//img.alicdn.com/imgextra/i4/O1CN01JRPjPQ1hiwZHJQzle_!!6000000004312-2-tps-1792-1260.png">
+					岑字号-（经营性）-2021-0139
+				</a>
+				<br>
+				<span>药品网络交易第三方平台备案信息：（艹）网药平台备字〔2023〕第000013-000号</span>
+				<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010002000120">
+					<img src="./img/浙江公安图标.png" style="position:relative;top:5px;vertical-align:baseline;">
+				暗网安备 33010002000120号</a>
+			<br>
+				<span style="margin-right:65px;">医疗器械网络交易服务第三方平台备案：（岑）网械平台备字[2018]第00002号</span>
+				<span>网络文化经营许可证：岑网文 [2021]1668-073号</span>
+				<a href="http://idinfo.zjamr.zj.gov.cn/bscx.do?method=lzxx&amp;id=3301843301840000201049">
+					<img src="./img/食品局图标.avif" style="width:35px;height:35px;position:relative;vertical-align:baseline;">
+				</a>
+			<br>
+			<span style="margin-right:30px;">岑梓铭网络食品销售第三方平台提供者备案：食你老味A33010002</span>
+			
+			<a href="https://jbts.mct.gov.cn/">12318举报</a>
+			<a href="http://beian.miit.gov.cn/">岑B2-20110446-1</a>
+				<b>© 2003-现在 TMALL.COM 版权所有</b>
+				<br>
+				<a href="https://www.shdf.gov.cn/"><img src="./img/扫黄打非.avif" style="position:relative;top:5px;vertical-align:baseline;"></a>
+				<a href="https://jbts.mct.gov.cn/"><img src="./img/文化局.avif" style="position:relative;top:5px;vertical-align:baseline;"></a>
+				<a href="https://www.12315.cn/"><img src="./img/12315平台.avif" style="position:relative;top:5px;vertical-align:baseline;"></a>
+				<a href="http://www.zjjubao.com/"><img src="./img/举报中心.avif" style="position:relative;top:5px;vertical-align:baseline;"></a>
+				<a href="https://jubao.taobao.com/"><img src="./img/网信认证.png" style="position:relative;top:5px;vertical-align:baseline;"></a>
+				<br><br><br>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	
+</body>
+
+</html>
+

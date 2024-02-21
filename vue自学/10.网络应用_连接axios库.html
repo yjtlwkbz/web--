@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="getJoke1">获取一条笑话</button>
+        <p>{{ joke1 }}</p>
+
+        <br><br><br>
+
+        <button @click="getJoke2">获取10条笑话</button>
+        <p v-for="(i,index) in joke2">{{ index+1 }}、{{ i }}</p>
+    </div>
+
+    <!-- 引入axios库 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        let index = 0
+        let p = document.querySelector('p')
+        new Vue({
+            el: '#app',
+            data: {
+                joke1: '',
+                joke2: ''
+            },
+            methods: {
+                // getJoke: function(){
+                //     //在这里需要用网络数据时再引入axios库
+                //     axios({
+                //         url: 'https://api-vue-base.itheima.net/api/joke'
+                //     }).then(result=>{
+                //         console.log(result)
+                //     }).catch(error=>{
+                //         console.log(error)
+                //     })
+                // }
+                getJoke1: function(){
+                    let that = this
+                    //在这里需要用网络数据时再引入axios库
+                    axios.get('https://api-vue-base.itheima.net/api/joke').then(
+                        function(response){
+                            //因为.then()函数里的函数都是回调函数，当methods对象的getJoke1函数入栈后，.then()函数会进入队列，然后getJoke1()函数出栈
+                            //那么此时.then()函数里的this指向就应该是window了，因为它最后执行，axios也算是一个API吧，那么就是在异步线程里由window调用
+                            //所以this指向window
+                            console.log(this)
+                            //会发现，this.joke没有？因为this会变
+                            console.log(this.joke)
+                            //那么只能用一个变量去保存response（当下的“this”对象）的值
+                            that.joke1 = response.data
+                            alert('获取成功')
+                        },
+                        function(err){
+
+                        }
+                    )
+                    //注意：这里除了原始的axios({ url:'服务器地址'}).then( result=>{......} ).catch( error=>{......} )之外，还可以
+                    //axios.get/post('服务器地址').then( function(response){......},function(err){.......}) 
+                    //传参的话还有两种形式：axios.get('服务器地址?key1=value1&key2=value2').then( function(response){......},function(err){.......}) get参数字符串
+                    //                    axios.post('服务器地址{key1=value1&key2=value2}').then( function(response){......},function(err){.......}) post参数对象
+
+                },
+                getJoke2: function(){
+                    let that = this
+                    axios.get('https://api-vue-base.itheima.net/api/joke/list?num=10').then(
+                        function(response){
+                            that.joke2 = response.data.data
+                            console.log(response.data)
+                            alert('获取成功')
+                        }
+                    )
+                }
+            }
+        })
+    </script>
+</body>
+</html>

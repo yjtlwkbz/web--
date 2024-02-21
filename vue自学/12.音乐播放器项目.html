@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <button></button>
+    <!-- 引入axios库 -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    
+    <script>
+        let button = document.querySelector('button')
+        button.addEventListener('click',function(){
+            axios({
+                url: 'http://musicapi.leanapp.cn/search?keywords='
+            }).then(res=>{
+                console.log(res)
+            })
+        })
+    </script>
+</body>
+</html>

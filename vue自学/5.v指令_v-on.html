@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="点击事件" v-on:click="method1">
+        <input type="button" value="鼠标经过事件" v-on:mouseenter="method2">
+        <input type="button" value="双击事件" v-on:dblclick="method3">
+        <!-- 注意双击事件是dblclick，别漏了db后面的l -->
+
+        <!-- 另外，为了方便代码书写vue还提供了更简洁的形式：@事件 -->
+        <h2 @click="changeFood"> {{ food }} </h2>
+    </div>
+    <script>
+        let count = 0;
+        new Vue({
+            el: '#app',
+            methods: {
+                method1: function(){
+                    alert('点击了一次')
+                },
+                method2: function(){
+                    document.write("鼠标经过，老子出来了")
+                },
+                method3: function(){
+                    alert("双击666")
+                },
+                changeFood: function(){
+                    if(count === 0){
+                        this.food = "啥也没得吃"
+                        count = 1
+                    }else{
+                        this.food += '不换哈哈哈哈'
+                    } 
+                }
+            },
+            data: {
+                food: '今晚吃狗屎，点一下能换菜'
+            }
+        })
+    </script>
+
+    <!-- 补充1：参数函数指令 -->
+    <div id="text">
+       <button @click="sayHi('老铁','666')">点一下输出打招呼语</button>
+       <input type="text" id="text" @keyup.enter="congratulation"> 
+    </div>
+    
+    <script>
+        new Vue({
+            el: '#text',
+            methods: {
+                sayHi: function(p1,p2){
+                    alert(p1+','+p2)
+                },
+                congratulation: function(){
+                    alert("新年快乐！！！")
+                }
+            }
+        })
+    </script>
+    
+    
+</body>
+</html>

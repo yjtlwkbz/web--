@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <form  class="row">
+            <!-- 输入省份 -->
+            <div class="mb-3 col">
+                <label class="form-label">省份名字</label>
+                <input type="text" placeholder="请输入省份名字" class="form-control province" />
+            </div>
+            <!-- 输入市级城市 -->
+            <div  class="mb-3 col">
+                <label class="form-label">城市名字</label>
+                <input type="text" placeholder="请输入市级城市名字" class="form-control city" />
+            </div>
+        </form>
+        <button type="button" class="btn btn-primary sel-btn">查询</button>
+        <br><br>
+        <p>地区列表:</p>
+        <ul class="list-group">
+            <!-- 示例地区 -->
+            <li class="list-group-item">东城区</li>
+        </ul>
+    </div>
+
+    <!-- 第一步：引入axios库 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- 第二部，调用axios库，传入服务器地址 -->
+    <script>
+        //现在开始接收服务器信息
+
+        //第1步：先用JavaScript绑定信息:1.输入框(输入的省份) 2.输入框(输入的城市) 3.查询按钮
+        let text1 = document.querySelector('[placeholder=请输入省份名字]');
+        let text2 = document.querySelector('[placeholder=请输入市级城市名字]');
+        let button = document.querySelector('.sel-btn')
+
+        //第2步：当两个输入框【输入事件】时，让两个参数获取到两个输入框输入的内容value
+        let pName
+        let cName
+        text1.addEventListener('input',function(){
+            pName = text1.value
+        })
+        text2.addEventListener('input',function(){
+            cName = text2.value
+        })
+        
+
+        //第3步,给按钮添加点击事件,然后才在点击事件里调用Ajax做什么事
+        button.addEventListener('click',function(){
+
+            //第4步:利用Ajax引入axios开始传输
+            axios({
+                url: 'https://hmajax.itheima.net/api/area',  //某个省某个市的所有地区数据资源所在服务器的地址
+                //完整网址形式就应该是“https://hmajax.itheima.net/api/area?pname=XXX&cname=XXX”
+                params: {
+                    pname: pName, //pname是省份或直辖市参数
+                    cname: cName //cname是市级城市参数
+                }
+            }).then(result=>{
+                console.log(result)//第5步:先看一下当前获取到的这个网址(命名为result这个对象了)这个对象有什么成员
+                console.log(result.data)//第6步:发现所有数据资源都在data这对象这,在输出一下data这对象看看有啥
+                //第7步:发现了所有地区数据资源都放在data对象的list这个数组里,都是字符串,那么就用一个数组变量获取到它
+                let list = result.data.list
+                //第8步:而且因为HTML那里我们把下拉菜单那个地区列表设置成小<li>,那么这些从服务器获得的字符串还得被<li></li>包起来
+                let li_list = list.map(areaName => `<li class="list-group-item">${areaName}</li>`)
+                //第9步:然后再将它这个数组,化为一整串字符串,因为你要塞进HTML标签代码里就得是字符串,不改的话塞进去的就是对象:[Obejct....]
+                let HTML_list = li_list.join('')
+                console.log(HTML_list)
+                //最后塞进HTML里
+                document.querySelector('.list-group').innerHTML = HTML_list
+                
+            })
+        })
+        //让回车键也可以有反应
+        text2.addEventListener('keyup',function(e){
+            if(e.key === 'Enter'){
+                    //第4步:利用Ajax引入axios开始传输
+                axios({
+                    url: 'https://hmajax.itheima.net/api/area',  //某个省某个市的所有地区数据资源所在服务器的地址
+                    //完整网址形式就应该是“https://hmajax.itheima.net/api/area?pname=XXX&cname=XXX”
+                    params: {
+                        pname: pName, //pname是省份或直辖市参数
+                        cname: cName //cname是市级城市参数
+                    }
+                }).then(result=>{
+                    console.log(result)//第5步:先看一下当前获取到的这个网址(命名为result这个对象了)这个对象有什么成员
+                    console.log(result.data)//第6步:发现所有数据资源都在data这对象这,在输出一下data这对象看看有啥
+                    //第7步:发现了所有地区数据资源都放在data对象的list这个数组里,都是字符串,那么就用一个数组变量获取到它
+                    let list = result.data.list
+                    //第8步:而且因为HTML那里我们把下拉菜单那个地区列表设置成小<li>,那么这些从服务器获得的字符串还得被<li></li>包起来
+                    let li_list = list.map(areaName => `<li class="list-group-item">${areaName}</li>`)
+                    //第9步:然后再将它这个数组,化为一整串字符串,因为你要塞进HTML标签代码里就得是字符串,不改的话塞进去的就是对象:[Obejct....]
+                    let HTML_list = li_list.join('')
+                    console.log(HTML_list)
+                    //最后塞进HTML里
+                    document.querySelector('.list-group').innerHTML = HTML_list
+                    
+                })
+            } 
+        })
+        
+    </script>
+
+
+</body>
+</html>

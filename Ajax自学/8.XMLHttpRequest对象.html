@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    <!-- XMLHttpRequest对象用于与服务器进行交互，axios库内部就是用它进行交互，简称XHR -->
+    <script>
+        let p = document.querySelector('p')
+        //步骤：
+        //1、创建XHR对象
+        const xhr = new XMLHttpRequest()
+        //2、配置【请求方法】和请求的【URL地址】
+        //   跟axios不同的是，这里的请求方式没有默认，get也必须要写上去，而且目前写完这两句代码，还没有发送请求成功
+        xhr.open('GET','https://hmajax.itheima.net/api/province')
+        //3、监听‘loadend’事件，接收响应结果
+        //   注意！注意！注意！注意！是“loadend”不是“loaden”!!不要漏了d
+        xhr.addEventListener('loadend' , () => {
+            console.log(xhr.response)//response是XRH的自带属性，就是拿到的结果
+            const res = JSON.parse(xhr.response)//因为是JSON的字符串文件，要想变成对象、获取到里面的具体信息，就得转成对象
+            p.innerHTML = res.list.join('<br>')
+        })
+        //4、发起请求，这一步才是真正把请求发送给服务器
+        xhr.send()
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2 v-text="message">{{ add }}</h2> <!-- 这样v指令后，里面所有内容跟着Vue里面改动而变化，但是双标签内内容覆盖 -->
+        <h2>{{ message }} {{ add }}</h2> <!-- 这样{{}}形式就能把里面内容都显示，这叫“差值表达式” -->
+        <h2 v-text="message + '贼屌，碉堡了'"></h2> <!-- 当然这样也可以弥补v指令无法改部分的不足 -->
+        <h2>{{ message + "是傻逼" }}</h2> <!-- 这样也行 -->
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: '岑梓铭',
+                add: '牛逼'
+            }
+        })
+    </script>
+</body>
+</html>

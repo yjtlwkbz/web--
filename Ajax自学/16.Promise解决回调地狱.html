@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //打比方，按照老方法，依次隔1秒输出【广东省】->【阳江市】->【阳东区】->【东城镇】
+        //那就要无限套娃：
+        // const p = new Promise(( resolve, reject ) => {
+        //     setTimeout(()=>{
+        //         resolve('广东省')
+        //         reject(new Error('错了'))
+        //     },1000)
+        // })
+
+        // p.then(res=>{
+        //     console.log(res)
+        //     const p2 = new Promise(( resolve, reject ) => {
+        //         setTimeout(()=>{
+        //             resolve(res + '阳江市')
+        //             reject(new Error('错了'))
+        //         },1000)
+        //     })
+
+        //     p2.then(res2=>{
+        //         console.log(res2)
+        //         const p3 = new Promise(( resolve, reject ) => {
+        //             setTimeout(()=>{
+        //                 resolve(res2 + '阳东区')
+        //                 reject(new Error('错了'))
+        //             },1000)
+        //         })
+
+        //         p3.then(res3=>{
+        //             console.log(res3)
+        //             const p4 = new Promise(( resolve, reject ) => {
+        //                 setTimeout(()=>{
+        //                     resolve(res3 + '东城镇')
+        //                     reject(new Error('错了'))
+        //                 },1000)
+        //             })
+
+        //             p4.then(res4=>{
+        //                 console.log(res4)
+        //             })
+        //         })
+        //     })
+        // })
+
+        //眼睛都看花了
+        //那么新方法，直接用.then()，每次生成的【Promise对象】都return出去，然后传到后面的.then()函数里就行了
+        const p = new Promise(( resolve, reject ) => {
+            setTimeout(()=>{
+                resolve('广东省')
+                reject(new Error('错了'))
+            },1000)
+        })
+
+        p.then(res=>{
+            return new Promise(( resolve, reject ) => {
+                setTimeout(()=>{
+                    resolve(res + '阳江市')
+                    reject(new Error('错了'))
+                },1000)
+            })
+        }).then(res=>{
+            return new Promise(( resolve, reject ) => {
+                setTimeout(()=>{
+                    resolve(res + '阳东区')
+                    reject(new Error('错了'))
+                },1000)
+            })
+        }).then(res=>{
+            return new Promise(( resolve, reject ) => {
+                setTimeout(()=>{
+                    resolve(res + '东城镇')
+                    reject(new Error('错了'))
+                },1000)
+            })
+        }).then(res=>{
+            console.log(res)
+        })
+
+    </script>
+</body>
+</html>

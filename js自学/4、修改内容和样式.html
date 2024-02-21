@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-----------------------------------------------------【CSS部分】------------------------------------------------------------->
+    <style>
+        .shit{
+            color: red;
+        }
+        .active{
+            line-height: 3350%;
+            text-align: center;
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+            background-color: aquamarine;
+        }
+
+
+        /* 原本ul li的样式 */
+        .nav li{
+            color: aquamarine;
+            font-size: 25px;
+        }
+        .change{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            background-color: violet;
+        }
+    </style>
+</head>
+<body>
+    <!-----------------------------------------------------【HTML部分】------------------------------------------------------------->
+    <!-- 1、修改HTML里文字内容 -->
+    <p class="p1">时刻督促不死的不错i本次大赛成本舍不得吃舍不得传播倒是不错是不成熟的吧从看，计划的不错结婚的是不成熟的本次调查 今河北山东传播啥的</p>
+    <p class="p2">是抗拒菲尼克斯v你</p>
+    <p class="p3"></p>
+    <!-- 本来是先输出HTML已有部分的内容，但因为js里修改了它两文字内容，所以直接只显示js修改后的内容 -->
+
+    <!-- 2、修改DOM元素属性 -->
+    <img>
+
+    <!-- 3、修改DOM元素样式 -->
+    <div class="box">这个盒子在HTML和css里啥也没写，样式来自于js</div>
+
+    <!-- 4、通过class类名一次性添加多个样式 -->
+    <div class="shit1">获取了active类名的样式</div>
+    <div class="shit2">既有shit让字体颜色红的样式，又有active的盒子样式</div>
+
+    <!-- 5、通过classList添加、删除、替换类名来改变样式 -->
+    <ul class="nav">
+        <li>测试1</li>
+        <li>测试2</li>
+        <li class="change">测试3</li> <!-- 这里我让第三个li获得change这个类名的样式，等会再用js删掉这个样式 -->
+        <li>测试4</li>
+        <li class="active">测试5</li> <!-- 这里我先让第五个li获得active这个类名样式，等会再用js替换成change类的样式 -->
+    </ul>
+
+    <!-- 6、修改表单内容 -->
+    <form action="">
+        <!-- 密码隐藏、显示功能 -->
+        <input type="password" placeholder="请输入密码" maxlength="20" class="text">
+        <input type="button" value="查看密码" class="button">
+
+        <!-- 全选功能 -->
+        <br><br>
+        <input type="checkbox" id="quanxuan"  class="chooseAll"><label for="quanxuan">全选</label>
+        <br>
+        <input type="checkbox" id="1" class="choose"><label for="1">选项1</label>
+        <input type="checkbox" id="2" class="choose"><label for="2">选项2</label>
+        <input type="checkbox" id="3" class="choose"><label for="3">选项3</label>
+        <button class="anniu">点一下就被禁用</button>
+
+    </form>
+
+    <!-----------------------------------------------------【JavaScript部分】------------------------------------------------------------->
+    <script>
+        //1、修改HTML里文字内容
+        let p1 = document.querySelector('.p1')
+        let p2 = document.querySelector('.p2')
+        let p3 = document.querySelector('.p3')
+        let oldp1 = p1.innerText//先获取还没被下面两句修改内容HTML的p1内容
+        p1.innerText = '<strong>innerText改变HTML里的文字内容</strong>'
+        p2.innerHTML = '<strong>innerHTML改变HTML里的文字内容</strong>'
+        p3.innerText = oldp1//用p3获得还没被改的p1内容，并显示
+
+        //2、修改DOM元素的属性
+        let img = document.querySelector('img')
+        img.src = '../HTML+css部分/u=271716603,3058821502&fm=253&fmt=auto&app=138&f=JPEG.webp'
+
+        //3、修改DOM元素样式
+        //注意：1、别漏了.style  2、“小驼峰”形式写样式，例如css的background-color在js是backgroundColor  3、他们的值都是‘字符串’
+        let box = document.querySelector('.box')
+        box.style.width = '500px'
+        box.style.height = '500px'
+        box.style.backgroundColor = 'red'
+        box.style.textAlign = 'center'
+        box.style.lineHeight = '3350%'
+
+        //4、通过class类名一次性添加多个样式
+        let shit1 = document.querySelector('.shit1')
+        let shit2 = document.querySelector('.shit2')
+        shit1.className = 'active' //shit1这个盒子现在在HTML的标签解析里是<div class="active">，会把之前的.shit1替换掉，从而获得css里active的样式
+        shit2.className = 'shit active' //shit2这个盒子即想要active的样式，又想要shit的让字体颜色变红的样式，就把两个类名都加上，一个元素可以有多个类名
+
+        //5、通过classList添加、删除、替换类名来改变样式
+        let li1 = document.querySelector('.nav li:nth-child(1)')
+        let li3 = document.querySelector('.nav li:nth-child(3)')
+        let li5 = document.querySelector('.nav li:nth-child(5)')
+        // let li = document.querySelectorAll('.nav li')
+        // let li5 = li[5]
+        li1.classList.add('change')//添加类名
+        li3.classList.remove('change')//删除类名
+        li5.classList.toggle('change')//更换类名
+
+        //6、修改表单内容
+        let text_input = document.querySelector('.text')
+        let button = document.querySelector('.button')
+        button.addEventListener('mousedown',function(){ //绑定事件，鼠标摁下input的type值为文本，也就是看得见密码
+            text_input.type = 'text'
+        })
+        button.addEventListener('mouseup',function(){ //绑定事件，鼠标摁下input的type值为密码，也就是看不见密码
+            text_input.type = 'password'
+        })
+
+        let chooseAll = document.querySelector('.chooseAll')
+        let choose = document.querySelectorAll('.choose')
+        chooseAll.onclick = function(){
+            for(let i=0; i<choose.length; i++){
+                choose[i].checked = chooseAll.checked  //绑定点击事件，其他复选框checked默认值跟全选框的checked默认值一样，全选框被选时就全选，否则全不选
+            }
+        }
+
+        let anniu = document.querySelector('.anniu')
+        anniu.onclick = function(){
+            anniu.disabled = !anniu.disabled
+        }
+    </script>
+</body>
+</html>  

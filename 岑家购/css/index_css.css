@@ -1,0 +1,381 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+  }
+
+  。header .container img{
+    margin-top: 15px;
+    width: 100%;
+    height: 150px;
+  }
+
+  。header .container a{
+    width: 230px;
+    height: 150px;
+  }
+
+  .header {
+    height: 180px;
+    background-color: rgba(255, 255, 255, 0.9);/*背景颜色为淡白色，其中RGB值最高为255，并且其不透明度为0.9。这将导致导航栏的文字和其他元素淡出。*/
+    width: 100%;
+    /* --------------------------------------------------------------------------------------------------------------- */
+    position: fixed;/*将导航栏定位为固定位置，相对于浏览器窗口的上边缘。这意味着当用户滚动页面时，导航栏将保留在原来的位置不动。*/
+    top: 0;/*设置导航栏垂直上方的距离为0。这将使导航栏粘贴在页面的上边缘。*/
+    left: 0;
+    /* -------------------------------------------------------------------------------------------------------------- */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);/*在导航栏下面放置一个黑色微光，以创建一个微小的阴影效果*/
+    display: flex;/*定义导航栏的布局为Flex布局。*/
+    align-items: center;/*在 Flex 布局下，使导航栏中的内容在垂直方向居中。*/
+    /* 垂直方向调位置
+    align-item还有其他属性：flex-start（左对齐） flex-end（右对齐） 
+                           space-between（左侧两端项目贴着左右两端，中间所有项目间隔相等）
+                           space-around （左右两侧项目有一定间距，中间其他项目间隔是两侧项目离两端间隔的两倍）
+                           space-evenly （各项目所有间距相等）
+    */
+
+    /*align-items是用于弹性容器（flex container）的 CSS 属性之一，用于指定容器中的所有项目如何在交叉轴上对齐。具体来说它可以控制项目垂直中心对齐或底部对齐。*/
+
+    /*stretch：默认值，如果项目未设置高度或设为 auto，则将沿交叉轴拉伸以与容器相同的高度。
+      flex-start：交叉轴的起点对齐。
+      flex-end：交叉轴的终点对齐。
+      center：交叉轴的中点对齐。
+      baseline：项目的第一行文字基线对齐。
+    */
+
+    /*该属性仅会影响项目在交叉轴上的对齐方式，而不会影响项目在主轴上的排列方式。如果需要控制项目在主轴上的排列，应该使用 justify-content 属性。*/
+  }
+    
+  .header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1calc(100% - 520px);
+    /* calc() 函数可以让开发者通过数学公式计算元素的某个属性，如宽度（width）或高度（height），以使元素在页面上更加灵活。 */
+    /* calc(100% - 520px) 意味着这个元素的实际宽度将是页面宽度的百分之百减去520像素。
+    具体来说，如果页面宽度是1200像素，那么这个元素的宽度将为680像素（即 100% - 520px = 1200px - 520px = 680px）。
+    如果页面宽度更宽或更窄，元素的实际宽度也会相应调整。 */
+  }
+   
+  .header ul {
+    display: flex;/*表示这个 ul 元素的布局采用了 Flexbox，即弹性布局。*/
+
+    /* flex容器：所有子元素叫flex项目，主轴默认是水平轴（从容器左到右为起点到终点），交叉轴默认是垂直轴（从容器上到下为起点到终点），各项目宽是主轴尺寸，高是交叉轴尺寸（除非主轴改为垂直轴） */
+
+    flex-direction: row;/*表示这个 Flexbox 的主轴方向是水平方向，即按行（从左到右）排列子元素。*/
+    /* row—_reverse(从右到左排列)、column(从上到下排列)、column(从下到上排列) */
+
+    justify-content: space-between;/*表示子元素（即 ul 下的 li 元素）之间的空白间隔均匀分配，且左右两端子元素紧贴容器边缘。*/
+
+    /* 类似于margin:auto或者text_align，水平方向调位置
+    justify-content还有其他属性：flex-start（左对齐） flex-end（右对齐） 
+                           space-between（左侧两端项目贴着左右两端，中间所有项目间隔相等）
+                           space-around （左右两侧项目有一定间距，中间其他项目间隔是两侧项目离两端间隔的两倍）
+                           space-evenly （各项目所有间距相等）
+    */
+
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }/* 这段 CSS 代码的作用是让头部菜单栏中的元素在水平方向上均匀分布，左右两端贴近容器边缘，高度占满容器，左侧自适应浏览器宽度。 */
+    
+  .header li {
+    font-size: 22px;
+    width: 50px;
+    height: 50px;
+    margin-top: 80px;
+    list-style-type: none;
+    margin-right: 30px;
+  }
+  .header li.denglu{
+    font-size: 22px;
+    width: 250px;
+    height: 50px;
+    margin-top: 80px;
+    list-style-type: none;
+    margin-right: 30px;
+  }
+    
+  .header li a {
+    width: 100%;
+    height: 100%;
+    margin-top: -50px;/*顶部与其所在位置（头部菜单栏）的顶部空出 50 像素的距离，即向上偏移了 50 像素。*/
+    text-decoration: none;
+    color: black;
+    cursor: pointer;/*表示鼠标悬浮时光标变为指针，提示用户可以点击该链接。*/
+    transition: all 0.3s;/*表示这个 <a> 元素的样式变化具有 0.3 秒的过渡效果，包括颜色、字体大小、背景色等所有样式属性的变化。*/
+  }/*这段 CSS 代码的作用是让头部菜单栏中的链接向上偏移一定距离，且文字无下划线，颜色为黑色，鼠标悬浮时提示用户可点击，且点击链接有平滑的样式过渡效果。*/
+    
+  
+  
+  .header .container {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.6);/*RGBA 是一种表示颜色的方法，其中 R、G、B 分别表示红、绿、蓝三原色的值，而 A 表示透明度，取值范围为 0-1*/
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);/*第一个值表示阴影距离元素的水平距离，第二个值表示垂直距离，第三个值表示阴影模糊程度，第四个值表示阴影颜色和透明度*/
+    display: flex;/*设置元素为弹性布局容器*/
+    flex-wrap: nowrap;/*当弹性布局容器内项目排列不下时，自动折行，并在下一行继续排列。*/
+    /* flex-wrap 属性的取值可以是 nowrap（默认，不换行，压缩小项目宽度）、wrap（超过父容器就换行）、wrap-reverse（在底部排列，换行并反转排列顺序） */
+
+    /* 注前面有用到flex-deraction来排列，和这里的flex-wrap来换行,如果要同时设置子项目排列和换行时推荐使用flex-flow,包含了他们俩，默认值是row nowrap */
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .header a:hover {
+    font-size: 25px;
+  }
+
+  
+  .search-box {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 600px;
+    top: 40%;
+    right: 5%;
+    max-width: 600px;
+  }
+  
+  .search-box input[type="text"] {/*input[type="text"]是一个 CSS 选择器，用于选择.search-box中所有 type 属性值为 "text" 的表单输入框元素。*/
+    /* <input> 元素来创建各种表单控件，例如 text、checkbox、radio、submit 等。其中，type 属性用于指定控件的类型。而 "text" 类型的输入框则是最常用的一种。 */
+    flex: 1;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px;
+    border-radius: 30px;/*圆边框*/
+    border: none;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .search-box input[type="text"]:focus {/*是一个伪类选择器，指的是当文本框被点击选中并且获得焦点（即用户处于文本框操作状态）时，样式的效果会发生变化*/
+    transform: scale(1.1);/*触发了一个更大的放大效果*/
+    /* scale 是 CSS 中的一个缩放属性，表示将元素按比例缩放。括号中的数值 1.1 是缩放倍数，值为 1 表示元素不缩放，大于 1 表示放大元素，小于 1 表示缩小元素。 */
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);/*更强的阴影*/
+  }
+  /* :hover ：当鼠标悬停在输入框上时应用样式；
+     :focus ：当输入框获得焦点时应用样式；
+     :disabled ：当输入框被禁用时应用样式；
+     :checked ：当输入框被选中时应用样式；
+ */
+  
+
+  .search-button {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 80px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .search-button i {
+    color: white;
+    font-size: 20px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .search-button:hover {
+    animation: pulse 0.5s ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .middle {
+    width: 100%;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; 
+    /* 让 row 元素之间的间距更加均匀 */
+  }
+  .row {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .box {
+    width: 15%; /* 每个 box 在 row 内占用 30% 的宽度 */
+    height: 400px;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    flex-shrink: 0;
+  }
+  
+  .box img {
+    width: 99%;
+    height: 70%;
+  }
+  
+  .box h3 {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .box p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+/* 闪动效果 */
+.flash {
+    animation: flash 1s ease-in-out infinite;
+  }
+  
+  @keyframes flash {
+    from {
+      opacity: 0.8;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+  .recommend h2{
+    font-size: 30px;
+    color: #333;
+    display: inline-block;
+  }
+  
+  .recommend {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .slider {
+    border: 1px solid gray;
+    width: 100%px;
+    height: 600px;
+    position: relative;
+    margin-top: 230px;
+  }
+  
+  .slider img {
+    display: none;
+    width: 100%; /* 设置图片宽度为父容器的100% */
+    height: 100%; /* 设置图片高度为父容器的100% */
+    object-fit: cover; /* 使用 cover 属性让图片不变形填充到容器中 */
+  }
+  
+  .slider img:first-child {
+    display: block;
+  }
+  
+  #footer {
+    color: #e4d2d2;
+    border-top: 1px solid #D1D7DC;
+    margin: 0;
+    text-align: center;
+    background: #fff;
+    font-family: "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB', '\5b8b\4f53', sans-serif;
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#footer a{
+  color: #666;
+  text-decoration: none;
+}
+
+#footer1{
+  width: 100%;
+  height: 170px;
+  margin-bottom: 0;
+}
+
+#footer1 dl {
+  text-align: left;
+  width: 150px;
+  height: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  margin-left: 150px;
+}
+
+#footer1 dl dt{
+  color: #333;
+  font-size: 25px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+#footer1 dd {
+  margin-left: 0;
+}
+
+#footer1 dd a{
+  font-size: 18px;
+  display: block;
+}
+
+#footer2{
+  margin-top: 0;
+}
+
+/* 二级标题 */
+.sub-nav {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 140px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.sub-nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.sub-nav ul li {
+  list-style: none;
+  font-size: 14px;
+}
+
+.sub-nav ul li a {
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+}
+
+.sub-nav ul li a:hover {
+  color: #f00;
+}
+  
+  

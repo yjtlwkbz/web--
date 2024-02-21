@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        
+        .slider{
+            width: 560px;
+            height: 400px;
+            overflow: hidden;
+        }
+        
+        .slider-wrapper{
+            width: 100%;
+            height: 320px;
+        }
+        .slider-wrapper img 
+        {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .slider-footer{
+           height: 80px;
+           background-color: rgb(100,67,68);
+           padding: 12px 12px 0 12px;
+           position: relative; 
+        }
+        .slider-footer .toggle{
+            position: absolute;
+            right: 0;
+            top: 12px;
+            display: flex;
+        }
+        .slider-footer .toggle button{
+            margin-right: 12px;width: 28px;
+            height: 28px;
+            appearance: none;
+            border: none;
+            background:rgba(255,255,255,0.1);
+            color:#fff;
+            border-radius: 4px;cursor: pointer;
+        }
+        .slider-footer .toggle button:hover {
+            background:rgba(255,255,255,0.2);
+        }
+        .slider-footer p {
+            margin: 0;
+            color:#fff;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .slider-indicator{
+            margin: 0;padding:0;list-style: none;display: flex;align-items: center;
+        } 
+        .slider-indicator li {
+            width: 8px;
+            height: 8px;
+            margin: 4px;
+            border-radius: 50%;
+            background:#fff;
+            opacity: 0.4;
+            cursor: pointer;
+        }
+        .slider-indicator li.active{ /* li.active 是通过用js方法动态给li添加类名。两种写法都可以，li:active 是通过css的方式实现的。*/
+            width: 12px;
+            height: 12px;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <button>点这停止定时器</button>
+    <br>
+    <p></p>
+
+    <!-- 案例1，定时器强制用户阅读 -->
+    <br>
+    <button class="UserRead" disabled>我已阅读并同意 （10秒）</button>
+
+    <!-- 案例2，定时器轮播图 -->
+    <div class="slider">
+        <div class="slider-wrapper">
+            <img src="../HTML+css部分/背景图.jpeg" /></div>
+            <div class="slider-footer"><p>对人类来说会不会太超前了?</p>
+                <ul class="slider-indicator">
+                    <li class="active"></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </u1>
+            <div class="toggle"><button class="prev">&lt;</button><button class="next">&gt;</button></div>
+        </div>
+    </div>
+    <script>
+        const p = document.querySelector('p')
+        //1、区分setTimeOut()和setInterval()
+        //setTimeOut()是隔多久后再做一次什么事，只做一次
+        let timeOUt = setTimeout(function(){
+            p.innerHTML = 'setTimeOut只执行一次'+`<br>`
+        },1000)
+        //setInterval()是持续隔一段时间做一件事，不关闭就一直做
+        let interval = setInterval(function(){
+            p.innerHTML += 'setInterval一直执行'+`<br>`
+        },1000)
+
+        //2、所以setInterval需要设置一个变量标记它，然后关闭它clearInterval(定时器变量)
+        const buttton = document.querySelector('button')
+        buttton.onclick = function(){
+            clearInterval(interval)
+        }
+
+
+
+
+
+
+
+
+        //案例1，定时器强制用户阅读按钮
+        let UserRead = document.querySelector('.UserRead')
+        let i = 10
+        let read = setInterval(function(){
+            UserRead.innerHTML = `我已阅读并同意 （${i}秒）`
+            i--
+            if(i === -1){
+                UserRead.innerHTML = `我同意`
+                clearInterval(read)
+                UserRead.disabled = false
+            }
+        },1000)
+
+        //案例2，定时器轮播图 
+        let box = document.querySelector('.slider')
+        let li = document.querySelectorAll('.slider-indicator li')
+        let j = 0
+        //设置定时器，干些啥事
+        let Move = setInterval(function(){
+            li[j].classList.remove('active')
+            if(j === 7){
+                li[0].classList.add('active')
+                j = 0
+            }else{                
+                li[j+1].classList.add('active')
+                j++
+            }
+        },2000)
+        //还有更简便的方法
+        // let a = 0
+        // let Move2 = setInterval(function(){
+        //     a++
+        //     if(a >= 8){
+        //         a = 0
+        //     }
+        //     document.querySelector('.slider-indicator .active').classList.remove('active')
+        //     li[a].classList.add('active')
+        // },2000)
+
+        //鼠标经过时关闭定时器，另外【鼠标经过】还可以是[mouseenter]
+        box.addEventListener('mouseover',function(){
+                clearInterval(Move)
+        })
+        // mouseover与mouseenter区别
+        //  1、onmouseover、onmouseout：经过其子元素时也触发该事件；（父亲有的东西，儿子也有，比如这里鼠标经过整个大盒子或者只是小li都触发）
+        //  2、onmouseenter、onmouseleave：经过其子元素时不触发该事件。（父亲的东西就是父亲的，不归儿子所有，比如这里鼠标经过小li或者别的地方没反应，只有大盒子有反应）
+
+        //鼠标离开时再开启定时器
+        box.addEventListener('mouseleave',function(){
+            //开启定时器就是把它再复制一次就行，但是不要带let
+            Move = setInterval(function(){
+                li[j].classList.remove('active')
+                if(j === 7){
+                    li[0].classList.add('active')
+                    j = 0
+                }else{                
+                    li[j+1].classList.add('active')
+                    j++
+                }
+            },2000)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>岑家购登录界面</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <body>
+        <img src="./img/背景图.jpeg" alt="My Image" id="bg-img">
+    </body>
+      
+    <div class="login-box">
+        <h1>登录</h1>
+        <form>
+            <div class="user-box">
+                <input type="text" name="" required="">
+                <!-- 注意！！！！！这个 [required=""] 这个玩意 -->
+                <!-- input 标签可以添加 required 属性。这是浏览器默认的验证只对空值进行检查，这个属性告诉了浏览器：
+                  在提交表单时，这个 input 元素里面必须有用户填写的值，否则浏览器应该提示用户输入相应的内容。 -->
+                <label>账号</label>
+            </div>
+            <div class="user-box">
+                <input type="password" name="" required="">
+                <label>密码</label>
+            </div>
+            
+            <input type="submit" value="登录">
+        </form>
+        <div class="register-box">
+            <a href="register.html">立即注册</a>
+        </div>
+    </div>
+    <script>
+        const loginForm = document.querySelector('form');
+        const errorMessage = document.getElementsByClassName('error-message');//error-message在哪？？？？
+        // "error-message" 不是 HTML 中的标准元素或属性，它只是一个示例类名（class name），用于表示错误消息的容器元素。
+        // 当页面发生错误时，并不会自动显示该错误消息，需要通过适当的 JavaScript 代码或条件判断来决定何时显示错误消息，并将其插入到页面中。
+        // 当他产生了错误的时候浏览器会自己生成这么一个类名为error-message的东西出来
+
+        // 类是用于创建对象、初始化数据和定义函数的模版，是一种以可重复使用的格式组织某类对象的信息的方法
+        // 假如你想创建猫、狗和兔子的对象。你可以单独创建每个对象，为每个新对象复制近乎相同的代码。
+        // 或者你可以创建一个叫做动物的模板，然后通过向动物模板传递特殊信息来简单地创建猫、狗和兔子对象。
+        // 类就是这种使用模板来创建不同但相似的对象而不需要重新写入代码的概念。
+        //类  class Animal {
+        //    constructor(name, species, age) {
+        //    this.name = name
+        //    this.species = species
+        //    this.age == age
+        //    }
+        // }
+        // 对象 let dog = new Animal("Spot", "Dog", 4)
+        
+        loginForm.addEventListener('submit', function (event)
+        // submit是JavaScript中一个事件名称，用于监听表单提交事件。当表单【提交】时会“触发”回调函数中的代码。 
+        { // 在给 loginForm.addEventListener 添加￥￥￥时，它的回调函数也需要使用事件对象作为参数。event 参数允许回调函数在其内部访问和操作事件对象的属性
+          // 因此，(event) 是告诉JavaScript将该事件对象传递到回调函数中。这样回调函数就能够针对该事件做出相应的处理。
+          event.preventDefault();
+          // event.preventDefault()是JavaScript中已有的函数之一。它用于阻止DOM事件的默认行为，例如点击链接时跳转到其href属性指定的URL，或者提交表单时刷新页面。
+          // 当调用event.preventDefault()时，浏览器将不会执行事件的默认行为(就是防止表单提交后页面重新加载)，该函数只适用于事件处理程序中的当前事件，而对其他事件没有任何影响。
+          
+          const usernameInput = document.querySelector('input[type="text"]');//获取表单中的用户名，并分存储到usernameInput变量中。
+          const passwordInput = document.querySelector('input[type="password"]');//获取表单中的密码，并分别存储到passwordInput变量中。
+        
+          const accountsJSON = localStorage.getItem('accounts');//从本地存储中获取 accounts 对象的 JSON 字符串
+          // localStorage 是一种在 Web 浏览器中存储数据的 API，这里是从浏览器的 localStorage 中获取键名为 "accounts" 的项，并返回其对应的值
+          //如果该项不存在，则 localStorage.getItem() 方法将返回 null 或 undefined
+                                                                
+          let accounts = {};// 如果 accounts 没有存储在本地，则创建一个空对象。
+          //{} 是一个简写的对象字面量（Object literal）表示法，表示一个空对象。
+          //执行这行代码会创建一个名为 accounts 的变量，并且将其初始化为空对象。
+
+          if (accountsJSON) {//如果有 accounts 将其解析成对象存储在变量accounts 中。
+            accounts = JSON.parse(accountsJSON);
+            // 具体而言，这个方法接收一个字符串参数 accountsJSON，该字符串应该符合 JSON 格式规范，
+            // 并包含所需要表示的数据。然后，该方法会返回一个与该 JSON 数据对应的 JavaScript 对象
+            // 例如，如果有一个 JSON 字符串如下：
+            //   {
+            //     "name": "John",
+            //     "age": 30,
+            //     "city": "New York"
+            //   }
+            // 那么可以使用 JSON.parse() 方法将其解析为对应的 JavaScript 对象：
+            //   const accountsJSON = '{"name":"John","age":30,"city":"New York"}';
+            //   const accountObject = JSON.parse(accountsJSON);
+            //   console.log(accountObject); // 输出 {name: "John", age: 30, city: "New York"}
+            // 在这个例子中，JSON.parse(accountsJSON) 方法将输入 JSON 字符串解析为一个包含 name、age 和 city 属性的 JavaScript 对象。
+          }
+        
+          // 检查账号和密码是否匹配
+          // 检查用户输入的用户名是否在 accounts 对象中，并且输入的密码与该用户名对应的密码匹配。
+          // 如果匹配成功，则清空错误信息，弹出 “登录成功！” 的提示框。如果验证失败，则在页面上显示错误消息。
+          if (accounts.hasOwnProperty(usernameInput.value.trim()) &&
+              accounts[usernameInput.value.trim()] === passwordInput.value )
+
+              // accounts.hasOwnProperty(usernameInput.value.trim())
+              // value 是元素对象(usernameInput)的一个属性，它包含了该表单元素当前输入的值，这个属性原本就存在于 JavaScript 的 DOM 元素对象中
+              // trim() 方法是 JavaScript 字符串对象的内置函数，用于删除字符串两端的空格或制表符等空白字符，返回一个去掉空格的新字符串。
+              // hasOwnProperty()是一个JavaScript内置函数，它是对象的方法，用于判断该对象是否具有指定名称的属性。
+              // 因此在accounts.hasOwnProperty(usernameInput.value.trim())中，accounts是一个 JavaScript对象，
+              // usernameInput.value.trim()返回输入框中的文本值去掉两端的空格，
+              // 并将其作为键传递给hasOwnProperty()方法进行检查。如果这个键名存在，则返回 true ，否则返回 false 。
+
+              // accounts[usernameInput.value.trim()]
+              // usernameInput.value.trim()返回一个字符串，该字符串被用作属性名来获取对象的值。
+              // 所以，accounts[usernameInput.value.trim()]的意思是访问accounts对象的一个属性，这个属性的名称取决于usernameInput.value.trim()所返回的字符串值。
+          {
+            errorMessage[0].textContent = '';
+            alert('登录成功！');
+          } else {
+            // errorMessage[0].textContent = '账号或密码不正确，请重新输入';
+          }
+        });
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const usernameInput = document.querySelector('input[type="text"]');
+        const passwordInput = document.querySelector('input[type="password"]');
+
+        if(usernameInput.value.trim() !== "" && passwordInput.value.trim() !== "") {
+          window.location.href = "index.html";
+          alert('登录成功！');
+        }
+        });
+
+        </script>
+
+</body>
+
+</html>

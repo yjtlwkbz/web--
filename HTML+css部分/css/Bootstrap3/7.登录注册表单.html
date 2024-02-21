@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap入门</title>
+    <meta charset="UTF-8">
+    <!-- 引入bootstrap3的css文件 -->
+    <link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <!-- 原生表单样式 -->
+    <input type="text" placeholder="请输入">
+    <select>
+        <option value="">请选择城市</option>
+        <option value="">广东省</option>
+        <option value="">黑龙江省</option>
+        <option value="">北京市</option>
+        <option value="">浙江省</option>
+        <option value="">湖南省</option>
+        <option value="">新疆省</option>
+    </select>
+    <textarea cols="30" rows="10">uhudcckhjdbcj hdvcgvsdgcvhsdvhgvdh dh </textarea>
+
+
+
+    <!-- .form-control类样式美化表单 -->
+    <br><hr><br>
+    <!-- 文本输入框 -->
+    <div class="row">
+        <div class="col-md-4 col-md-push-3">
+            <input class="form-control" placeholder="请输入" type="text">
+        </div>
+    </div>
+    <br>
+    <!-- 下拉菜单 -->
+    <div class="row">
+        <div class="col-md-2 col-md-push-3">
+            <select class="form-control">
+                <option value="">请选择城市</option>
+                <option value="">广东省</option>
+                <option value="">黑龙江省</option>
+                <option value="">北京市</option>
+                <option value="">浙江省</option>
+                <option value="">湖南省</option>
+                <option value="">新疆省</option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-md-push-3">
+            <textarea class="form-control">
+                uhudcckhjdbcj hdvcgvsdgcvhsdvhgvdh dh 
+            </textarea>  
+        </div>
+    </div>
+
+    <!-- 复选框 -->
+    <!-- 垂直排列 -->
+    <div class="row">
+        <div class="col-md-2 col-md-push-3">
+            <div class="checkbox">
+                <label for="sing"><input type="checkbox" id="sing">唱歌</label>
+            </div>
+            <div class="checkbox">
+                <label for="dance"><input type="checkbox" id="dance">跳舞</label>
+            </div>
+            <div class="checkbox">
+                <label for="rap"><input type="checkbox" id="rap">Rap</label>
+            </div>
+        </div>
+    </div>
+    <!-- 横向排列 -->
+    <div class="row">
+        <div class="col-md-2 col-md-push-3">
+            <label for="sing2" class="checkbox-inline">
+                <input type="checkbox" id="sing2">唱歌
+            </label>
+            <label for="dance2" class="checkbox-inline">
+                <input type="checkbox" id="dance2">跳舞
+            </label>
+            <label for="rap2" class="checkbox-inline">
+                <input type="checkbox" id="rap2">Rap
+            </label>
+        </div>
+    </div>
+    <!-- 单选框一样，不做垂直演示了 -->
+    <div class="row">
+        <div class="col-md-2 col-md-push-3">
+            <label for="sing3" class="radio-inline">
+                <input type="radio" id="sing3" name="danxuan">唱歌
+            </label>
+            <label for="dance3" class="radio-inline">
+                <input type="radio" id="dance3" name="danxuan">跳舞
+            </label>
+            <label for="rap3" class="radio-inline">
+                <input type="radio" id="rap3" name="danxuan">Rap
+            </label>
+        </div>
+    </div>
+
+    <!-- 按钮漂亮样式 -->
+    <div class="row">
+        <div class="col-md-9 col-md-push-3">
+            <button class="btn">简约按钮</button>
+            <button class="btn btn-primary">primary按钮</button>
+            <button class="btn btn-danger">danger按钮</button>
+            <button class="btn btn-success">success按钮</button>
+            <button class="btn btn-warning">warning按钮</button>
+            <button class="btn btn-info">info按钮</button>
+            <button class="btn btn-default">default按钮</button>
+            <button class="btn btn-lg">加大简约按钮</button>
+            <button class="btn btn-xs">变小简约按钮</button>
+            <span class="btn btn-default">span也变按钮</span>
+            <a href="#" class="btn btn-default">超链接变按钮</a>
+        </div>
+    </div>
+
+    <!-- 做一个整体表单样例看看 -->
+    <!-- 步骤：1、在夫亲form容器设置 role='form'  2、将每个表单控件和文字放在一组类名form-group的div里，这样控制距离合适 3、有文本的控件都加form-control类名 -->
+    <br><br><br><br>
+    <div class="container row" style="width: 800px; height: 600px; text-align: center; margin: auto; font-size: 18px; border: 3px solid rgba(0, 0, 0, 0.139); border-radius: 50px;">
+        <h1>登陆界面</h1><br>
+
+        <div class=" col-md-8 col-md-push-2" style="height: 500px;">
+            <form action="#" class="form-horinzontal" rolr="form">
+                <div class="form-group row">
+                    <label for="Account" class="control-label col-md-2 col-md-push-2">账号:</label>
+                    <div class="col-md-6  col-md-push-2">
+                        <input type="text" class="form-control" id="Account">
+                    </div>          
+                </div>
+                <div class="form-group row">
+                    <label for="psw" class="control-label col-md-2 col-md-push-2">密码:</label>
+                    <div class="col-md-6  col-md-push-2">
+                        <input type="password" class="form-control" id="psw">
+                    </div>  
+                </div>
+                <div class="form-group row">
+                    <label for="Phone" class="control-label col-md-2 col-md-push-2">手机:</label>
+                    <div class="col-md-6  col-md-push-2">
+                        <input type="text" class="form-control" id="Phone">
+                    </div>
+                    <button class="btn col-md-2 col-md-push-2">验证码</button>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-2 col-md-push-2">身份</label>
+                    <div class="col-md-6  col-md-push-2">
+                        <label for="stu" class="radio-inline" style="font-size: 13px;">
+                            <input type="radio" id="stu" name="shenfen">学生
+                        </label>
+                        <label for="tea" class="radio-inline" style="font-size: 13px;">
+                            <input type="radio" id="tea" name="shenfen">教职工
+                        </label>
+                        <label for="man" class="radio-inline" style="font-size: 13px;">
+                            <input type="radio" id="man" name="shenfen">管理员
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="psw" class="control-label col-md-2 col-md-push-2">文本:</label>
+                    <div class="col-md-6  col-md-push-2">
+                        <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                    </div>  
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br>
+
+
+    <!-- 底部包住bootstrap3的两js文件 -->
+    <script src="jquery-1.12.4.min.js"></script>
+    <script src="./bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+            1、分析URL,就是获取网络数据资源的“统一资源定位符”，简称“网址”
+
+            2、然后分析网址：https://hmajax.itheima.net/api/province
+            这里【https://】就是“钥匙”【协议】，指定了浏览器和服务器之间传输数据必须按照一致的格式，协议范围有：http、https....
+            【hmajax.itheima.net】就是“家的地址”【域名】，就是这个服务器在互联网的位置
+            【/api/province】是“物品的地址”【资源路径】，这是资源所在这个服务器的位置 
+    -->
+    <p class="myP"></p>
+
+    <!-- 第一步：引入axios库 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- 第二部，调用axios库，传入服务器地址 -->
+    <!-- 
+           3、那还有这种：“https://music.163.com/#/song?id=1814904616”
+           这里【song?id=1814904616】是啥玩意？这是URL的查询参数，标准格式：http://xxxx.com/xxx/xxx?参数名1=值1&参数名2=值2
+           比如这个“https://hmajax.itheima.net/api/city?pname=河北省”，我们只想访问的是河北省数据而不是所有省份，【city?pname=河北省】就传入参数【pname】
+
+           4、当然也可以直接用axios库里的params，也可以获得参数值
+     -->
+    <script>
+        axios({
+            url: 'https://hmajax.itheima.net/api/city',
+            params: {
+                pname: '河北省' //传参数和值
+            }
+        }).then(result=>{
+            console.log(result.data.list)
+            document.querySelector('.myP').innerHTML = result.data.list.join('<br>')
+        })
+    </script>
+
+
+</body>
+</html>

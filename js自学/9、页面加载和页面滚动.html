@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 有的老代码喜欢吧JavaScript写在head，但是程序读代码是从上到下，当读到JavaScript部分发现找不到里面的HTML内容时就会报错 -->
+    <script>
+        //这么干愣愣地写就会报错，这时候还没到HTML部分，程序不知道'button'是个啥玩意
+        // let button = document.querySelector('button')
+        // button.onclick = function(){
+        //     alert('hahahahaha')
+        // }
+
+        //这时候就要用window这个最大对象的“load”加载事件，程序执行到load事件后就会先跳过里面，把页面所有代码资源加载读完，再回到这里执行
+        // window.addEventListener('load',function(){
+        //     let button = document.querySelector('button')
+        //     button.onclick = function(){
+        //         alert('hahahahaha')
+        //     }
+        // })    
+
+        //当然还有一种情况，比如逛颜色网站，有的视频封面图还没加载出来，但这个时候点链接还是可以进去
+        //这就是跟document页面对象有关联了，用它的DOMContentLoaded事件，可以先略过图片、css、表单这些加载
+        document.addEventListener('DOMContentLoaded',function(){
+            let button = document.querySelector('button')
+            button.onclick = function(){
+                alert('hahahahaha')
+            }
+        }) 
+    </script>
+</head>
+<body>
+    <button>点击</button>
+</body>
+</html>

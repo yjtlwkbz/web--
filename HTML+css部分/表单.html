@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="将这个表单数据提交给谁，比如:./背景图调式.html" name="让处理数据的文件认出是哪个表单，比如:form1" method="调教数据的方式：dialog\get\post">
+        <!-- 文本输入框 -->
+        <input type="text" placeholder="这是一个文本框" name="为了让后台区分表单数据的，比如UseName">
+        <br>
+        <!-- 密码输入框 -->
+        <input type="password" placeholder="这是一个密码框" name="为了让后台区分表单数据的，比如Password" maxlength="20">
+        <br>
+        <!-- 单选框 -->
+        性别：
+        男<input type="radio" name="单选框" checked="checked">
+        女<input type="radio" name="单选框">
+        <br>
+        <!-- 多选框 -->
+        多选框：
+        <input type="checkbox" name="复选框">我是人
+        <input type="checkbox" name="复选框" checked="checked">我是傻逼
+        <input type="checkbox" name="复选框">我是帅哥
+        <br><br>
+        <!-- 提交按钮 -->
+        <input type="submit" value="sumbit提交按钮">
+        <!-- 重置按钮 -->
+        <input type="reset" value="reset重置按钮">
+        <!-- 一些普通按钮 -->
+        <br><br><input type="button" value="普通按钮"><br><br>
+        <input type="image" src="./提交按钮.jpg" style="width: 160px; height: 80px;"><br><br>
+        提交文件的按钮：<input type="file">
+
+        <!-- 配合lable标签 -->
+        <br><br>一个单选框（不用非得鼠标选中框里，在那几个字就可以选中了）：<br>
+        <input type="radio" id="sex1" checked="checked" name="性别"><label for="sex1">男</label>
+        <input type="radio" id="sex2" name="性别"><label for="sex2">女</label>
+        <!-- label里的for=""必须跟对应的input的id=""值一模一样才能配对上 -->
+
+        <!-- 下拉菜单 -->
+        <br><br><br>
+        籍贯：
+        <select name="" id="">
+            <option value="">阳江</option>
+            <option value="">火星</option>
+            <option value="">黑洞</option>
+            <option value="">萝莉岛</option>
+            <option value="">北京</option>
+            <option value="">山东</option>
+            <option selected="selected">狗窝</option> <!-- 在option里加上selected，就跟在input里加上checked一样，默认值 -->
+            <option value="">你家</option>
+        </select>
+
+        <!-- 文本域 -->
+        <br><br>
+        <textarea name="" id="" cols="30" rows="10">
+            这就是一个文本域
+        </textarea>
+    </form>
+    <!-- 总结 -->
+    <!-- 1、form是表单域 -->
+    <!-- 2、表单有三个控件：input提交数据框、select下拉菜单、textarea文本域 -->
+    <!-- 3、input的属性有：
+        type类型、
+        placeholder默认显示字、
+        values真实输入的数据值(除了单选复选框，其他的设置了都能看到)，比如把“提交”按钮改成“登录”、
+        name是给后台辨别数据来源是谁的、
+        checked是默认值、
+        maxlength是最大限制字数
+     -->
+     <!-- input的type有这么几个：text文本、password密码、radio单选、checkbox多选、submit提交按钮、reset重写按钮、button普通按钮... -->
+     <!-- 注意！！单选和复选设置name一定要对应一样，有了一样的name才能被当成一组，比如“性别”单选框设了一样的name，那么就可以单选了 -->
+     <!-- label可以配合input，只要label里的for=""配对input的id=""，就可以点label内容就点了input内容 -->
+     <!-- select的默认值是在option里设置selected -->
+</body>
+</html>

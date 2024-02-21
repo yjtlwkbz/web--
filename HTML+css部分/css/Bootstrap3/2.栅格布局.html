@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Bootstrap入门</title>
+    <meta charset="UTF-8">
+    <!-- 引入bootstrap3的css文件 -->
+    <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- 首先是大容器 -->
+    <div class="container" style="border: 1px solid black; height: 900px;">
+        <h2>container</h2>
+        <br><br>
+        <!-- 然后是行元素作为分栅格的参照容器，根据row这一行来分栅格布局 -->
+        <div class="row" style="border: 1px solid black; height: 100px;">
+            <!-- 最后就是col列元素 -->
+            <!-- 以前div作为块级元素每个占据一行，但是bootstrap帮我们处理了这问题，可以多个div在一行出现,但是不可以超出12格！！！！ -->
+            <div class="col-md-4" style=" height: 100px; background-color: aqua;">4</div>
+            <div class="col-md-8" style=" height: 100px; background-color: bisque;">8</div>
+        </div>
+        <div class="row" style="border: 1px solid black; height: 100px;">
+            <div class="col-md-1" style=" height: 100px; background-color: yellow;">1</div>
+            <div class="col-md-1" style=" height: 100px; background-color:yellow;">1</div>
+            <div class="col-md-2" style=" height: 100px; background-color:violet;">2</div>
+            <div class="col-md-8" style=" height: 100px; background-color:tomato;">8</div>
+        </div>
+        <!-- 另外xs\sm\md\lg 是对应设备屏幕大小自动计算的，而不是指格子设计时的大小，对应小手机、平板、大手机、电脑、电视屏幕... -->
+        <div class="row" style="border: 1px solid black; height: 100px;">
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6" style=" height: 100px; background-color:teal;">6</div>
+            <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6" style=" height: 100px; background-color:teal;">6</div>
+        </div>
+
+        <hr>
+        <!-- 栅格偏移，【col-(xs\sm\md\lg)-offset-?】,根据数字往右偏几格 -->
+        <div class="row" style="border: 1px solid black; height: 100px;">
+            <div class="col-md-2" style=" height: 100px; background-color:sandybrown;">2</div>
+            <div class="col-md-2 col-md-offset-3" style=" height: 100px; background-color:sandybrown;">2往左偏3格</div>
+            <div class="col-md-2 col-md-offset-3" style=" height: 100px; background-color:sandybrown;">2往左偏3格</div>
+        </div>
+
+        <hr>
+        <!-- 栅格排序，还可以任意调整哪一个到这一行任意一个位置 -->
+        <div class="row" style="border: 1px solid black; height: 100px;">
+            <div class="col-md-2" style=" height: 100px; background-color: yellow;">第一个2,不动</div>
+            <div class="col-md-2 col-md-push-6" style=" height: 100px; background-color:rgb(0, 255, 170);">第二个2，往后推了6格</div>
+            <div class="col-md-2" style=" height: 100px; background-color:violet;">第三个2,不动</div>
+            <div class="col-md-2 col-md-pull-4" style=" height: 100px; background-color:tomato;">第四个2，往前退了4格</div>
+        </div>
+
+        <hr>
+        <!-- 栅格嵌套，每一行的每一列还可以无限往下再分12个子列 -->
+        <div class="row" style="border: 1px solid black; height: 100px;">
+            <div class="col-md-6" style=" height: 100px; background-color: rgb(255, 179, 0);">
+                <div class="col-md-6" style=" height: 100px; background-color:rgb(187, 0, 255);">第一列再分半</div>
+                <div class="col-md-6" style=" height: 100px; background-color:rgb(0, 255, 255);">第一列再分半</div>
+            </div>
+            <div class="col-md-6" style=" height: 100px; background-color:rgb(0, 255, 64);">
+                <div class="col-md-6" style=" height: 100px; background-color:rgb(0, 255, 174);">第二列再分半</div>
+                <div class="col-md-6" style=" height: 100px; background-color:rgb(255, 0, 200);">第二列再分半</div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部包住bootstrap3的两js文件 -->
+    <script src="jquery-1.12.4.min.js"></script>
+    <script src="./bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+</body>
+</html>

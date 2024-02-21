@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+    <!-- 引入bootstrap3的css文件 -->
+    <link rel="stylesheet" href="../HTML+css部分/css/Bootstrap3/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="input_num" class="row" style="margin-top: 300px; font-size: 25px;">
+        <div class="col-md-10 col-md-push-4">
+            <button @click="minus"  class="btn btn-success col-md-1" style="height: 70px; font-size: 40px; border: 1px solid black; border-top-left-radius: 40%; border-bottom-left-radius: 40%;">
+                -
+            </button>
+            <span class="col-md-1" style="text-align: center; height: 70px; line-height: 70px; border: 1px solid black;">
+                {{ num }}
+            </span>
+            <button @click="plus"  class="btn btn-warning col-md-1" style="height: 70px; font-size: 40px; border: 1px solid black; border-top-right-radius: 40%; border-bottom-right-radius: 40%;">
+                +
+            </button>
+        </div>
+    </div>
+
+    
+    <script>
+        new Vue({
+            el: '#input_num',
+            data: {
+                num: 1
+            },
+            methods: {
+                minus: function(){
+                    if(this.num === 0){
+                        alert('没得减了')
+                    }else{
+                       this.num--; 
+                    } 
+                },
+                plus: function(){
+                    if(this.num === 10){
+                        alert('没得加了')
+                    }else{
+                       this.num++; 
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

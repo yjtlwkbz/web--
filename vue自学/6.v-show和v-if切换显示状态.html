@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="点击事件" @click="changeState">
+        <img src="../给别人的生日代码/img/背景图片1.jpeg" alt="" v-show="isShow"> 
+        <!-- v-show的参数是true和false，直接用布尔值会固定死，可以用vue的变量或者表达式来代替固定布尔值 -->
+
+        <h2 v-if="isShow">JDHCBWJHCIB</h2>
+        <!-- 一样效果 -->
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            methods: {
+                changeState: function(){
+                    this.isShow = !this.isShow //每次点击事件后isShow就变成相反的布尔值
+                }
+            },
+            data: {
+                isShow: false
+            }
+        })
+    </script>
+</body>
+</html>

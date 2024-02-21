@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>黄嘉怡的生日蛋糕</title>
+    <link rel="stylesheet" href="../css/蛋糕样式.css" />
+  </head>
+  <body>
+    <bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh
+    ><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh
+    ><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh
+    ><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh
+    ><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh
+    ><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh
+    ><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh
+    ><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh
+    ><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh><bokeh></bokeh>
+    <div class="mobile">最大化查看</div>
+    <div class="pyro">
+      <div class="before"></div>
+      <div class="after"></div>
+    </div>
+    <h1>祝黄嘉怡天天开心!</h1>
+    <h2>Happy Birthday to 黄嘉怡!</h2>
+    <span>🎉</span>
+      <div class="candle"><div id="flame" class="lit"></div></div>
+      <div class="cake"></div>
+      <div class="plate"></div>
+    <audio controls loop>
+        <source src="../群星-Happy-birthday.mp3" type="audio/mp3">
+    </audio>
+      
+    <script>
+      let cake = document.querySelector('.cake');
+      let candle = document.querySelector('.candle');
+      let plate = document.querySelector('.plate');
+      cake.addEventListener('mouseenter', function() {
+        candle.style.left = '49%';
+        cake.style.cursor = 'pointer';
+        cake.style.height = '80px';    
+        cake.style.width = '220px'; 
+        candle.style.cursor = 'pointer';
+        candle.style.height = '60px'; 
+        plate.style.cursor = 'pointer';
+        plate.style.height = '110px'; 
+      });
+      cake.addEventListener('mouseleave', function() {
+        candle.style.left = '48%'; 
+        cake.style.height = '60px';    
+        cake.style.width = '200px'; 
+        plate.style.height = '90px';    
+        plate.style.width = '300px';
+        candle.style.height = '50px';    
+  
+      });
+      candle.addEventListener('mouseenter', function() {
+        candle.style.left = '49%';
+        cake.style.height = '80px';    
+        cake.style.width = '220px'; 
+        candle.style.cursor = 'pointer';
+        candle.style.height = '60px';    
+ 
+        plate.style.cursor = 'pointer';
+        plate.style.height = '110px'; 
+      });
+      candle.addEventListener('mouseleave', function() {
+        candle.style.left = '48%'; 
+        candle.style.height = '50px';    
+ 
+        cake.style.height = '60px';    
+        cake.style.width = '200px'; 
+        plate.style.height = '90px';    
+        plate.style.width = '300px'; 
+      });
+      plate.addEventListener('mouseenter', function() {
+        candle.style.left = '49%';
+        cake.style.height = '80px';    
+        cake.style.width = '220px'; 
+        candle.style.cursor = 'pointer';
+        candle.style.height = '60px'; 
+        plate.style.cursor = 'pointer';
+        plate.style.height = '110px';    
+        plate.style.width = '320px'; 
+      });
+      plate.addEventListener('mouseleave', function() {
+        candle.style.left = '48%'; 
+        plate.style.height = '90px';    
+        plate.style.width = '300px'; 
+        cake.style.height = '60px';    
+        cake.style.width = '200px'; 
+        candle.style.height = '50px';    
+ 
+      });
+
+      cake.addEventListener('click', function() {
+        alert("                                      Next  surprise！");
+        window.location.href = './黄嘉怡照片百叶窗.html';
+      });
+      candle.addEventListener('click', function() {
+        alert("                                      Next  surprise！");
+        window.location.href = './黄嘉怡照片百叶窗.html';
+      });
+      plate.addEventListener('click', function() {
+        alert("                                      Next  surprise！");
+        window.location.href = './黄嘉怡照片百叶窗.html';
+      });
+      
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </body>
+</html>
+
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const promise = new Promise(function( resolve , reject ){
+            //这里兑现“承诺”
+
+            // resolve('Oh yes!!成功了卧槽')//resolve函数代表成功，当成功时就把传入给resolve的参数输出
+
+            reject(new Error('shit!!!失败啦！'))//reject函数代表失败,里面是传一个“错误”对象，失败时就把传给“错误对象”的参数输出
+            //注意成功、失败只能输出其一
+        })
+        promise.then(
+            function(sucess){
+                console.log('1')
+                console.log(sucess) //这里自定义参数sucess就是resolve()的参数
+            }
+            ,
+            function(error){
+                console.log('2')
+                console.log(error) //这里自定义参数error就是reject()的new Error()对象的参数
+            }
+            //这里注意，如果只输出成功结果，那么.then()只需要一个回调函数即可
+            //但是如果只输出失败结果，那么必须要有两个函数，而且会自动判断将失败参数传给第二个函数，由第二个函数输出
+        )
+
+        //.then()就可以理解为一个“定时器”，他就是一个大的回调函数体，里面都是各个回调函数，.then()函数里的所有函数都会在普通函数执行完，栈区空后，从队列一个一个压回栈执行
+        console.log('///////////')//这里可以证明，结果会先打印出'////////////////'再接着打印.then()函数里的内容
+    </script>
+</body>
+</html>
