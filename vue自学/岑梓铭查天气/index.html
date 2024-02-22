@@ -151,10 +151,17 @@
         line-height:80px;
     }
     .info_temp{
+        font-size:20px;  
+        color:rgb(80, 151, 209);
+    }
+    .info_temp b{
+        font-size:13px;
+    }
+    .info_win{
         font-size:14px;  
         color:#fda252;
     }
-    .info_temp b{
+    .info_win b{
         font-size:13px;
     }
     .tem .iconfont {
@@ -192,6 +199,11 @@
                 <span class="iconfont">{{ i.wea }}</span>
             </div>
             <div class="info_temp">
+                <b></b>
+                早上{{ i.tem_day }}℃ ~ 晚上{{ i.tem_night }}℃
+                <b></b>
+            </div>
+            <div class="info_win">
             <b></b>
             {{ i.win }} ~ {{ i.win_speed }}
             <b></b>
