@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>big events</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<div style="height:400px;"></div>
+
+<div class="w1000">
+	
+	<h1 class="header">点滴努力大事件</h1>
+
+	<div class="event_wrap clearfix">
+		<div class="middle_line">					
+		</div>			
+	</div>
+
+</div>
+
+<div style="height:100px;"></div>
+
+	
+
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.eventFlow.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var bigEvent =[{
+		'year' : 2015,
+		'events' :[
+		{
+			'mouths' : 2,
+			'times' :'2015年2月29',
+			'even' :'米校园创业团队正式成立，确定以“个性化定制”为核心的校园综合服务团队，覆盖20多所大学，成为小'
+		},{
+			'mouths' : 4,
+			'times' :'2015年4月3',
+			'even' :'米校园创业团队正式成立，确定以“个性化定制”为核心的校园综合服务团队，覆盖20多所大学，成为小'
+		},{
+			'mouths' : 10,
+			'times' :'2015年10月11日',
+			'even' :'米校园创业团队正式成立，确定以“个性化定制”为核心的校园综合服务团队，覆盖20多所大学，成为小'
+		}]
+	},{
+		'year' : 2016,
+		'events' :[
+		{
+			'mouths' : 2,
+			'times' :'2016年2月18',
+			'even' :'米校园创业团队正式成立，确定以“个性化定制”为核心的校园综合服务团队，覆盖20多所大学，成为小'
+		},{
+			'mouths' : 4,
+			'times' :'2016年4月15',
+			'even' :'米校园创业团队正式成立，确定以“个性化定制”为核心的校园综合服务团队，覆盖20多所大学，成为小'
+		}
+		]}];
+		$('.event_wrap').eventFlow({'events':bigEvent});
+	})
+
+</script>
+
+</body>
+</html>

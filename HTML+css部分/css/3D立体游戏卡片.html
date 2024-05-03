@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(15, 10, 53);
+            display: flex;
+            padding-left: 540px;
+            padding-top: 300PX;
+        }
+        .card{
+            width: 200px;
+            height: 300px;
+            margin: 0 50px;
+            position: relative;
+        }
+        img{
+            width: 100%;
+            /* 要让几个图片重叠在一起，就要绝对定位 */
+            position: absolute;
+        }
+        /* 调整层级，标题最外层，英雄第二层，背景最内层 */
+        .cover{
+            z-index: 1;
+            height: 100%;
+            transition: 0.5s;
+        }
+        /* 接下来让卡片往后倾斜 */
+        .card:hover .cover{
+            /* perspective是加一点景深，更逼真 */
+            transform: perspective(500px) rotateX(25deg);
+            /* 再给卡片加一点阴影 */
+            box-shadow: 0 35px 35px -8px rgba(0, 0, 0, 0.7);
+        }
+        .cover img{
+            height: 100%;
+        }
+        .hero{
+            z-index: 2;
+            /* 一开始看不见 */
+            opacity: 0;
+            transition: 0.5s;
+        }
+        .card:hover .hero{
+            /* 鼠标移入就出现 */
+            opacity: 1;
+            /* 然后位移，得到震撼效果 */
+            /* translate3d是一个三维位移，第一个是x轴、第二个是y轴、第三个是z轴（离我们越近越有效果） */
+            transform: perspective(500px) translate3d(0 -50px 50px);
+        }
+        .title{
+            z-index: 3;
+            bottom: 0;
+        }
+        .card:hover .title{
+            /* 然后位移，得到震撼效果 */
+            /* translate3d是一个三维位移，第一个是x轴、第二个是y轴、第三个是z轴（离我们越近越有效果） */
+            transform: perspective(500px) translate3d(0 -25px 50px);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="https://gd-hbimg.huaban.com/4762763f8c641c654c4287c491ed08d7597149806993e-IsYPWw_fw480webp" class="cover">
+        <img src="https://gd-hbimg.huaban.com/a96c8adabc9b8fa32d5d97a3e1a5b7d84a1d5e553311a-nKz7SG_fw480webp" class="title">
+        <img src="https://gd-hbimg.huaban.com/bca653c60fbaa68525d8efcee2859597e64c809c2dd2-oKqljj_fw480webp" class="hero">
+    </div>
+    <div class="card">
+        <img src="https://gd-hbimg.huaban.com/b88a5329fcc367a9ae17239c6a7b682145d49dcf1170b-XSt1Rw_fw480webp" class="cover">
+        <img src="https://gd-hbimg.huaban.com/dd0ed94081a9d4a2979edf1037c70f6645b220253a19e-OSBlej_fw480webp" class="title">
+        <img src="https://gd-hbimg.huaban.com/993f7890590e8d845ac15f1898aa9a750161c0c47f9a3-RL1lCR_fw480webp" class="hero">
+    </div>
+</body>
+</html>

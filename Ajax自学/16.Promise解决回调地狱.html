@@ -52,37 +52,90 @@
 
         //眼睛都看花了
         //那么新方法，直接用.then()，每次生成的【Promise对象】都return出去，然后传到后面的.then()函数里就行了
-        const p = new Promise(( resolve, reject ) => {
-            setTimeout(()=>{
-                resolve('广东省')
-                reject(new Error('错了'))
-            },1000)
-        })
+        // const p = new Promise(( resolve, reject ) => {
+        //     setTimeout(()=>{
+        //         resolve('广东省')
+        //         reject(new Error('错了'))
+        //     },1000)
+        // })
 
-        p.then(res=>{
+        // p.then(res=>{
+        //     return new Promise(( resolve, reject ) => {
+        //         setTimeout(()=>{
+        //             resolve(res + '阳江市')
+        //             reject(new Error('错了'))
+        //         },1000)
+        //     })
+        // }).then(res=>{
+        //     return new Promise(( resolve, reject ) => {
+        //         setTimeout(()=>{
+        //             resolve(res + '阳东区')
+        //             reject(new Error('错了'))
+        //         },1000)
+        //     })
+        // }).then(res=>{
+        //     return new Promise(( resolve, reject ) => {
+        //         setTimeout(()=>{
+        //             resolve(res + '东城镇')
+        //             reject(new Error('错了'))
+        //         },1000)
+        //     })
+        // }).then(res=>{
+        //     console.log(res)
+        // })
+
+        //可是那样还是很难理解
+        //那么async和await函数提供了更舒服的写法
+        function A(){
             return new Promise(( resolve, reject ) => {
+                console.log('/////////////')
                 setTimeout(()=>{
-                    resolve(res + '阳江市')
+                    resolve('广东省')
                     reject(new Error('错了'))
                 },1000)
             })
-        }).then(res=>{
+        }
+        function B(){
             return new Promise(( resolve, reject ) => {
                 setTimeout(()=>{
-                    resolve(res + '阳东区')
+                    resolve('阳江市')
                     reject(new Error('错了'))
                 },1000)
             })
-        }).then(res=>{
+        }
+        function C(){
             return new Promise(( resolve, reject ) => {
                 setTimeout(()=>{
-                    resolve(res + '东城镇')
+                    resolve('阳东区')
                     reject(new Error('错了'))
                 },1000)
             })
-        }).then(res=>{
+        }
+        function D(){
+            return new Promise(( resolve, reject ) => {
+                setTimeout(()=>{
+                    resolve('东城镇')
+                    reject(new Error('错了'))
+                },1000)
+            })
+        }
+
+        async function fn(){
+            const res = await A()
             console.log(res)
-        })
+
+            const resB = await B()
+            console.log(resB)
+
+            const resC = await C()
+            console.log(resC)
+
+            const resD = await D()
+            console.log(resD)
+        }
+
+        //最后别忘了调用执行这个async函数，上面只是声明函数
+        fn()
 
     </script>
 </body>

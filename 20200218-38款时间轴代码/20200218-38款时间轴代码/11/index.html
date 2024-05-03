@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+	
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.timelinr-2.0.0.js"></script>
+    <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+
+	
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css" />
+    <link rel="stylesheet" href="css/course.css" />
+    <!-- <link rel="stylesheet" href="css/main.css" /> -->
+
+    <script type="text/javascript">
+      $(function() {
+        $().timelinr({
+          autoPlay: false,
+          autoPlayDirection: "forward",
+          startAt: 7,
+          mousewheel:  'true'
+        });
+      });
+    </script>
+	
+  </head>
+  <body>
+    <div id="main">
+      <div id="timeline" class="timeline">
+        <button id="prev" class="prev">
+          <i class=""><img src="images/icon_time_arrow_left.png" alt=""/></i>
+        </button>
+        <button id="next" class="next">
+          <i class=""><img src="images/icon_time_arrow_right.png" alt=""/></i>
+        </button>
+        <ul id="dates" class="dates">
+          <li>
+            <a href="#2011" name="2011">2011</a>
+            <hr class="onepx" />
+          </li>
+          <li>
+            <a href="#2012">2012</a>
+            <hr class="onepx" />
+          </li>
+          <li>
+            <a href="#2013">2013</a>
+            <hr class="onepx" />
+          </li>
+          <li>
+            <a href="#2014">2014</a>
+            <hr class="onepx" />
+          </li>
+          <li>
+            <a href="#2015">2015</a>
+            <hr class="onepx" />
+          </li>
+          <li>
+            <a href="#2016">2016</a>
+            <hr class="onepx" />
+          </li>
+          <li>
+            <a href="#2017">2017</a>
+            <hr class="onepx" />
+          </li>
+          <li>
+            <a href="#2018">2018</a>
+            <hr class="onepx" />
+          </li>
+        </ul>
+        <hr class="hrLine" />
+        <div class="wrap">
+          <ul class="issues" id="issues">
+            <li id="2011">
+              <div class="left"></div>
+              <div class="right">
+                <h5>2011年</h5>
+                <hr class="yearLine" />
+                <span class="textArea">
+                  这是一段测试文本test文本。
+                </span>
+              </div>
+            </li>
+            <li id="2012">
+              <div class="left">
+                <h5>2012年</h5>
+                <hr class="yearLine" />
+                <span class="textArea">
+                    这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本。
+                </span>
+              </div>
+              <div class="right"></div>
+            </li>
+            <li id="2013">
+              <div class="left"></div>
+              <div class="right">
+                <h5>2013年</h5>
+                <hr class="yearLine" />
+                <span class="textArea">
+                    这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本。
+                </span>
+              </div>
+            </li>
+            <li id="2014">
+              <div class="left">
+                <h5>2014年</h5>
+                <hr class="yearLine" />
+                <span class="textArea">
+                    这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本。
+                </span>
+              </div>
+              <div class="right"></div>
+            </li>
+            <li id="2015">
+              <div class="left"></div>
+              <div class="right">
+                <h5>2015年</h5>
+                <hr class="yearLine" />
+                <span class="textArea">
+                    这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本。
+                </span>
+              </div>
+            </li>
+            <li id="2016">
+              <div class="left">
+                <h5>2016年</h5>
+                <hr class="yearLine" />
+                <span class="textArea">
+                    这是一段测试文本test文本;这是一段测试文本test文本。
+                </span>
+              </div>
+              <div class="right"></div>
+            </li>
+            <li id="2017">
+              <div class="left"></div>
+              <div class="right">
+                <h5>2017年</h5>
+                <hr class="yearLine" />
+                <span class="textArea">
+                    这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本。
+                </span>
+              </div>
+            </li>
+            <li id="2018">
+              <div class="left">
+                <h5>2018年</h5>
+                <hr class="yearLine" />
+                <span class="textArea">
+                    这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本。
+                </span>
+              </div>
+              <div class="right"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

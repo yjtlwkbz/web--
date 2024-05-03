@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <!-- 引用【计算属性】只需要直接写计算函数名字即可，不要带括号 -->
+    <!-- 引用【普通函数】必须要带括号 -->
+    <p>计算属性：{{ totalCount }} <br>普通函数执行计算：{{ totalCountFn() }}<br>
+       计算属性：{{ totalCount }} <br> 普通函数执行计算：{{ totalCountFn() }}<br>
+       计算属性：{{ totalCount }} <br> 普通函数执行计算：{{ totalCountFn() }}<br>
+       计算属性：{{ totalCount }} <br> 普通函数执行计算：{{ totalCountFn() }}<br>
+       <!-- 这里我分别引用4次【计算属性】和4次【普通计算函数】，但是计算属性的函数只会执行1次，普通函数会执行4次 -->
+    </p>
+    <script>
+        new Vue({
+            el: 'p',
+            data: {
+                list: [0,1,2,3,4,5]
+            },
+            //computed计算属性，跟data这些属性同级
+            computed: {
+                //自定义个计算函数，代表一个计算属性，注意直接写"函数名(){...}"即可，一定一定！！要有return返回值！！！
+                totalCount(){
+                    console.log('计算属性执行一次')
+                    let p = this.list.reduce((sum,item) => sum + item , 0)
+                    return p
+                }
+            },
+            methods: {
+                totalCountFn(){
+                    console.log('普通计算函数执行一次')
+                    let p = this.list.reduce((sum,item) => sum + item , 0)
+                    return p
+                }
+            }
+        })
+
+        // 先解释一下reduce()函数，是JavaScript的函数，用来计算数组值的
+        // 数组.reduce(函数)，这样的话，不管作为参数的哪个函数里面做什么，初始值都是默认从0开始
+        // 数组.reduce(函数 , 数字)，这样写，初始值就是从那第二个数字开始
+        // 然后这个参数函数只需要写一个运算表达式即可，传进去的两个参数里，第一个参数就是sum累加、累减、累乘、累除值，第二个参数就是遍历到的数组每个成员
+        // reduce函数会根据里面这个函数运算表达式返回的值，作为下一次循环的【第一个参数】，接着参与运算
+        // 所以这个案例里就是从0开始，把【0,1,2,3,4,5】累加起来
+    </script>
+
+
+    <!--------------------------------------------- 修改computed计算属性的值 -------------------------------------------------->
+    <div id="app">
+        姓： <input type="text" v-model="FirstName">
+        +
+        名： <input type="text" v-model="LastName">
+        =  <span>{{ FullName }}</span>
+
+        <div>
+            <button @click="changeName">点击换名字</button>
+        </div>
+        
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                FirstName: '岑',
+                LastName: '梓铭'
+            },
+            methods: {
+                changeName:  function(){
+                    this.FullName = '系统定好的名字'
+                }
+            },
+            computed: {
+                FullName: {
+                    //get()这就跟之前写法一样,但是只有get不能修改计算属性的值
+                    get(){
+                        return this.FirstName + this.LastName
+                    },
+                    //不需要有set()才可以在外面修改【计算属性的值】
+                    //注意这里修改【计算属性的值】就是指修改【FullName这个整个函数的返回值】
+                    set(value){
+                        //.slice()函数可以分割字符串，两个下标参数就是分割这两下标区间的字符串
+                        console.log(value.slice(0,1))
+                        //一个下标参数就是分割这个下标之后的所有字符串
+                        console.log(value.slice(1))
+                        this.FirstName = value.slice(0,1)
+                        this.LastName = value.slice(1)
+                    }
+                }
+                //之前的写法，这样子只等于只写了一个【get()】
+                // FullName(){
+                //     return  this.FirstName + this.LastName
+                // }
+            }
+        })
+    </script>
+</body>
+</html>

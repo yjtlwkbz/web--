@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入vue类包 -->
+    <script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text"  v-model="obj.word">
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                obj:{
+                    word: '',
+                }
+                
+            },
+            //设置watch配置项
+            watch:{
+                //有两种形式：1、函数名(参数1,参数2)，这样的话会自动获取【这次改变的值】和【上一次的值】，参数1就是【这次改变的值】，参数2反之
+                //           2、函数名(参数)，一个参数就是自动获取实时更新的值（上一个写法了解就行，没人用）
+                'obj.word'(value){
+                    console.log('变化了', value)
+                }
+            }
+        })
+    </script>
+
+    <div id="app2">
+        <input type="text" v-model="obj.words">
+        <!-- 这里给select表单元素设置了v-model，只要下拉菜单改变，马上把对应的option的value值传给Vue的data -->
+        <select v-model="obj.lang">
+            <option value="italy">意大利</option>
+            <option value="eglish">英语</option>
+            <option value="german">德语</option>
+        </select>
+        <span>{{ translation }}</span>
+    </div>
+
+    <!-- 第一步：引入axios库 -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app2',
+            data: {
+                obj: {
+                    words: '初始值就翻译',
+                    lang: 'eglish'
+                },
+                translation: '',
+                //这里设置一个timer变量成员，用来代替setTimeout计时器，相当与它就是那个setTimeout的名字
+                timer: null
+            },
+            watch: {
+                obj: {
+                    //开启深度监视，可以监视整个对象里面的值改变
+                    deep: true,
+                    //这个是设置一开始还没有改变表单值、也就是没有触发watch监视时，按照data里的初始值直接先执行一次hangler函数
+                    immediate: true,
+                    handler(value){
+                        //那就每次监视输入框输入时，第一步是先把计时器关闭了
+                        clearTimeout(this.timer)
+
+                        this.timer = setTimeout(async ()=>{
+                            const res = await axios({
+                                url: 'https://applet-base-api-t.itheima.net/api/translate',
+                                params: value
+                                //这里value就是data那个对象
+                                //其实就等于下面这个麻烦的写法
+                                // params: {
+                                //     words: value.words,
+                                //     lang: value.lang
+                                // }
+                            })
+
+                            console.log(res)
+                            console.log(res.data.data)
+                            this.translation = res.data.data
+                        },1000)
+                    }
+                }
+                
+
+                // words(value){
+                //     //那就每次监视输入框输入时，第一步是先把计时器关闭了
+                //     clearTimeout(this.timer)
+
+                //     this.timer = setTimeout(async ()=>{
+                //         const res = await axios({
+                //             url: 'https://applet-base-api-t.itheima.net/api/translate',
+                //             params: {
+                //                 words: value,
+                //                 lang: this.lang
+                //             }
+                //         })
+
+                //         console.log(res)
+                //         console.log(res.data.data)
+                //         this.translation = res.data.data
+                //     },1000)
+                // }
+
+                // words(value){
+                //     axios({
+                //         url: 'https://applet-base-api-t.itheima.net/api/translate',
+                //         params: {
+                //             words: value
+                //         }
+                //     }).then(res => {
+                //         console.log(res)
+                //     }) 
+                // }
+            }
+        })
+    </script>
+</body>
+</html>

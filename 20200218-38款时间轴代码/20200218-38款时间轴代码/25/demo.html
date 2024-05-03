@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>timeline</title>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="cont">
+
+	<div class="biz_title">
+		<h2>发展历程</h2>
+		<p>CONMPANY HISTORY</p>
+	</div>
+	
+	<div class="biz_timtline-box">
+		<div class="biz_timeline">
+			<div class="biz-timeline-box  clearfix">
+				<div class="biz_timeline-time">2012.12</div>
+				<div class="biz_timeline-node"></div>
+				<div class="biz_timeline-eventbox">
+					<div class="biz_timeline-event">公司成立</div>
+				</div>
+			</div>
+			<div class="biz-timeline-box  clearfix">
+				<div class="biz_timeline-time">2013.02</div>
+				<div class="biz_timeline-node"></div>
+				<div class="biz_timeline-eventbox">
+					<div class="biz_timeline-event">园区业务方向</div>
+				</div>
+			</div>
+			<div class="biz-timeline-box  clearfix">
+				<div class="biz_timeline-time">2014.03</div>
+				<div class="biz_timeline-node"></div>
+				<div class="biz_timeline-eventbox">
+					<div class="biz_timeline-event">获天使轮投资900万元</div>
+				</div>
+			</div>
+			<div class="biz-timeline-box  clearfix">
+				<div class="biz_timeline-time">2013.09</div>
+				<div class="biz_timeline-node"></div>
+				<div class="biz_timeline-eventbox">
+					<div class="biz_timeline-event">业务转型互联网营销</div>
+				</div>
+			</div>
+			<div class="biz-timeline-box  clearfix">
+				<div class="biz_timeline-time">2016.06</div>
+				<div class="biz_timeline-node"></div>
+				<div class="biz_timeline-eventbox">
+					<div class="biz_timeline-event">V1.0版本上线</div>
+				</div>
+			</div>
+			<div class="biz-timeline-box  clearfix">
+				<div class="biz_timeline-time">2017.03</div>
+				<div class="biz_timeline-node"></div>
+				<div class="biz_timeline-eventbox">
+					<div class="biz_timeline-event">期待。。。。</div>
+				</div>
+			</div>
+		</div>
+		<div class="biz_longString"></div>
+	</div>
+	
+</div>
+
+<script type="text/javascript">
+$(function(){
+	var item = $(".biz-timeline-box").length;
+	var height = $(".biz-timeline-box")[0].offsetHeight + 45;
+	$(".biz_longString").css('height',height*item+57);
+})
+</script>
+
+</body>
+</html>

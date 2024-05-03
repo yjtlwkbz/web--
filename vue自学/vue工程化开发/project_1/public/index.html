@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <!-- 只是一个提示，遇到不支持js的浏览器时抛出提示 -->
+    <!-- 不重要，现在的浏览器基本都支持js文件 -->
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+
+    <!-- 这里就还是HTML的容器 -->
+    <!-- 但是注意，我们不再像以前一样写下面这种vue模板语法 -->
+    <!-- <div id="app">
+      {{ message }}
+    </div> -->
+    
+    <div id="app"></div>
+  </body>
+</html>

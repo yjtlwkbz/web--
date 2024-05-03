@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --c1: #fbfdfa;
+            --c2: #cbdce5;
+
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ccd9e2, #eaedf2);
+        }
+
+        body * {
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            width: 90vmin;
+            height: 90vmin;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-content: space-around;
+            margin-top: -5vmin;
+            filter: 
+                drop-shadow(-0.1vmin 0.2vmin 0.01vmin #7ea2bc90) 
+                drop-shadow(-0.2vmin 0.3vmin 0.01vmin #7ea2bc80) 
+                drop-shadow(-0.3vmin 0.4vmin 0.01vmin #7ea2bc70) 
+                drop-shadow(-0.4vmin 0.5vmin 0.01vmin #7ea2bc60)  
+                drop-shadow(-0.5vmin 0.6vmin 0.01vmin #7ea2bc50)  
+                drop-shadow(-0.6vmin 0.7vmin 0.01vmin #7ea2bc40)   
+                drop-shadow(-0.7vmin 0.8vmin 0.01vmin #7ea2bc30)  
+                drop-shadow(-0.8vmin 0.9vmin 0.01vmin #7ea2bc20)  
+                drop-shadow(-0.9vmin 1vmin 0.01vmin #7ea2bc10);
+        }
+
+        .bubble {
+            width: 20vmin;
+            height: 20vmin;
+            border-radius: 1vmin;
+            position: relative;
+            background: linear-gradient(25deg, var(--c1), var(--c2));
+            box-shadow: -0.25vmin 0.25vmin 0.25vmin 0.05vmin #fff inset;
+        }
+
+        .bubble.circle {
+            border-radius: 100%;
+        }
+
+        .bubble.square {
+            width: 20vmin;
+        }
+
+        .bubble.rectangle {
+            width: 30vmin;
+        }
+
+        .bubble.rounded {
+            border-radius: 5vmin;
+        }
+
+        .bubble.oval {
+            width: 30vmin;
+            border-radius: 10vmin;
+        }
+
+        .bubble.oval.rounded {
+            width: 30vmin;
+            border-radius: 100%;
+        }
+
+        .bubble.egg {
+            border-radius: 75% 55% 75% 55% / 55% 55% 67% 75%;
+        }
+
+        .bubble.egg-shaped {
+            width: 30vmin;
+            border-radius: 70% 40% 65% 45% / 75% 80% 65% 60%;
+        }
+
+        .bubble.egg-shaped.rounded {
+            border-radius: 75% 55% 75% 55% / 55% 55% 67% 75%;
+        }
+
+        .bubble:after {
+            --beak: #f2f7f6;
+            content: "";
+            position: absolute;
+            box-sizing: border-box;
+            width: 6vmin;
+            height: 6vmin;
+            bottom: -5.75vmin;
+            right: 7vmin;
+            background-repeat: no-repeat;
+            background: linear-gradient(-135deg, var(--beak) 0 4.25vmin, #fff0 0 100%);
+        }
+
+        .bubble.circle:after {
+            right: 6vmin;
+            --beak: #f3f8f7;
+        }
+
+        .bubble.rectangle:after {
+            --beak: #edf3f4;
+        }
+
+        .bubble.oval.rounded:after {
+            right: 10vmin;
+        }
+
+        .bubble.egg-shaped:after {
+            right: 12vmin;
+        }
+
+        .bubble.circle:after,
+        .bubble.oval:after,
+        .bubble.egg:after,
+        .bubble.egg-shaped:after {
+            background: radial-gradient(circle at 150% 35%, #fff0 5vmin, var(--beak) calc(5vmin + 1px) 100%);
+            border-radius: 0 0 0 100%;
+            bottom: -5.5vmin;
+            --beak: #f3f8f7;
+            width: 7vmin;
+        }
+        .bubble.oval:after {
+            --beak: #eef4f4;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="bubble circle"></div>
+        <div class="bubble oval"></div>
+        <div class="bubble oval rounded"></div>
+        <div class="bubble egg"></div>
+        <div class="bubble egg-shaped"></div>
+        <div class="bubble egg-shaped rounded"></div>
+        <div class="bubble square"></div>
+        <div class="bubble rectangle"></div>
+        <div class="bubble rectangle rounded"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #efeeee;
+        }
+        .img{
+            margin-left: 40px;
+            height: 100px;
+            width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            /* box-shadow: x轴偏移度 y轴偏移度 模糊程度 颜色 */
+            box-shadow: 18px 18px 30px rgba(0, 0, 0, 0.2), /* x和y的偏移度正值就是往右和往下，也即右边框和下边框阴影 */
+                        -18px -18px 30px rgba(255, 255, 255, 1); /* x和y的偏移度负值就是往左和往上，也即左边框和上边框阴影 */
+                        /* 另外，一个角全白，对立的一个角淡黑色就是立体效果了 */
+        }
+        .img:hover{
+            cursor: pointer;
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.2),
+                        0 0 0 rgba(255, 255, 255, 0.8),/* 这两层是很淡很淡的阴影色，几乎啥也没有，就相当于没有立体感成平面面图了 */
+                        inset 18px 18px 30px rgba(0, 0, 0, 0.2), /* 这里既然是内阴影了，x肯定就以左边框为起点，y以上边框为起点，向右向下为正值 */
+                        inset -18px -18px 30px rgba(255, 255, 255, 1);
+                        /* inset是指定为内阴影，不设置的时候系统默认为outset外阴影 */
+            transition: all 0.2s ease-out;
+        }
+        .img img{
+            width: 60px;
+            height: 60px;
+        }
+        .img .img:hover{
+            width: 50px;
+            height: 50px;
+            transition: all 0.2s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="img">
+        <img src="../../../uView/uView_project/images/图标/点赞.png" alt="">
+    </div>
+    <div class="img">
+        <img src="../../../uView/uView_project/images/图标/上传.png" alt="">
+    </div>
+    <div class="img">
+        <img src="../../../uView/uView_project/images/图标/广西1.png" alt="">
+    </div>
+    <div class="img">
+        <img src="../../../uView/uView_project/images/图标/搜索.png" alt="">
+    </div>
+</body>
+</html>

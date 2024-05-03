@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>cx插件-时间轴</title>
+
+<link rel="stylesheet" type="text/css" href="css/timeAxis1.css">
+
+</head>
+<body>
+
+<div class="cx-time-main" id="cxTime"></div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/timeAxis1.js"></script>
+<script type="text/javascript">
+	var oTimeAxiosFun = null;
+	$(function () {
+		var timeList = [
+			{name:'第一次',time:'2019-11-01',value:123456},
+			{name:'第二次',time:'2019-11-02',value:121},
+			{name:'第三次',time:'2019-11-03',value:129},
+			{name:'第四次',time:'2019-11-14',value:128},
+			{name:'第五次',time:'2019-11-05',value:126},
+			{name:'第六次',time:'2019-11-06',value:125},
+			{name:'第七次',time:'2019-11-07',value:124},
+			{name:'第八次',time:'2019-11-08',value:122},
+			{name:'第九次',time:'2019-11-09',value:123},
+		];//参数列表
+		var param = {
+			data: timeList, // 数据
+			id: 'cxTime', //dom节点ID
+			index: 0, // 选中时间节点
+			sort: 'just', // 正序just，反序back, 其他表示不排序
+			sortKey: 'time', //排序的参数key
+			// activeColor: '#26a69a', // 选中颜色
+			props: ['name','time','value'], //展示的key
+			then: function (data) {
+				console.log(data);
+			}, //点击事件回调方法
+			// format: function (key, val) {
+			// 	console.log(key, val);
+			// 	return val
+			// }, //数据格式化处理
+		}
+		oTimeAxiosFun = new oTimeAxios(param);
+	})
+</script>
+	
+</body>	
+</html>
